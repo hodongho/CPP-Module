@@ -1,36 +1,29 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dhyun <dhyun@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 00:02:51 by dhyun             #+#    #+#             */
-/*   Updated: 2022/11/03 16:58:22 by dhyun            ###   ########seoul.kr  */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <iostream>
-#include <algorithm>
+
+char	*str_upper(char *str)
+{
+	int	i;
+
+	std::cout << &str << std::endl;
+	i = 0;
+	while (str[i])
+	{
+		str[i] = toupper(str[i]);
+		i++;
+	}
+	return(str);
+}
 
 int	main(int argc, char *argv[])
 {
-	int	i;
-	std::string str =  "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	std::string str;
 
+	std::cout << &str << std::endl;
+	str.clear();
 	if (argc < 2)
-	{
-		std::cout << str;
-		return (1);
-	}
-	str = argv[1];
-	i = 2;
-	while (argv[i])
-	{
-		str = str + argv[i];
-		i++;
-	}
-	std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+		str = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	for(int i = 1; i < argc; i++)
+		str += str_upper(argv[i]);
 	std::cout << str << std::endl;
 	return (0);
 }

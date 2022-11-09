@@ -1,10 +1,14 @@
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
-NAME	= megaphone
+NAME	= PhoneBook
 
-SRCS	= megaphone.cpp
+SRCS	= main.cpp PhoneBook.cpp Contact.cpp
 OBJS	= $(SRCS:.cpp=.o)
+
+ifdef DFLAG
+	CXXFLAGS += -g2 -fsanitize=address
+endif
 
 all : $(NAME)
 
@@ -13,6 +17,10 @@ $(NAME) : $(OBJS)
 
 clean :
 	$(RM) $(OBJS)
+
+debug:
+	@make fclean
+	@make DFLAG=1 all
 
 fclean :
 	make clean
