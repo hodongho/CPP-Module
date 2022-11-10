@@ -9,9 +9,10 @@ class PhoneBook {
 	int		index;
 
 	public:
-	void	init();
-	void	add_contacts();
-	void	search();
+	PhoneBook();
+
+	void	AddContact();
+	void	Search();
 };
 
 #endif

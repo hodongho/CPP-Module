@@ -1,13 +1,13 @@
 #include <iostream>
 #include "PhoneBook.hpp"
 
-void	PhoneBook::init()
+PhoneBook::PhoneBook()
 {
 	memset(Contacts, 0, sizeof(Contacts));
 	index = 0;
 }
 
-void	PhoneBook::add_contacts()
+void	PhoneBook::AddContact()
 {
 	std::string		mes[5] = {
 		"First Name : ",
@@ -22,28 +22,44 @@ void	PhoneBook::add_contacts()
 	{
 		std::cout << mes[i];
 		getline(std::cin, input);
-		Contacts[index].add_contact(input, i);
+		if (input.empty() == true)
+		{
+			std::cout << "Input is empty!" << std::endl;
+			i--;
+		}
+		if (Contacts[index].AddContact(input, i) == false)
+		{
+			std::cout << "Wrong Phone Number!" << std::endl;
+			i--;
+		}
 	}
-	Contacts[index].set_index(index);
+	Contacts[index].SetIndex(index);
 	index++;
 	if (index == 8)
 		index = 0;
 }
 
-void	PhoneBook::search()
+void	PhoneBook::Search()
 {
 	std::string	input;
-	int			index;
 
-	for(int	i = 0; i < 8; i++)
-		Contacts[i].search();
-	std::cout << "Please select any index : ";
-	getline(std::cin, input);
-	index = stoi(input);
-	if (index < 1 || index > 8)
+	while(1)
 	{
-		std::cout << "Wrong index" << std::endl;
-		return ;
+		for(int	i = 0; i < index; i++)
+			Contacts[i].Search();
+		std::cout << "Please select any index : ";
+		getline(std::cin, input);
+		if (input.empty() == true)
+		{
+			std::cout << "Input is empty!" << std::endl;
+			continue ;
+		}
+		if (input[1] != 0 || input[0] < '1' || input[0] > '8' || input[0] > index + '0')
+		{
+			std::cout << "Wrong index!" << std::endl;
+			continue ;
+		}
+		break ;
 	}
-	Contacts[index - 1].display();
+	Contacts[input[0] - '0' - 1].Display();
 }

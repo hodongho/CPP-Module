@@ -2,26 +2,76 @@
 #include <iomanip>
 #include "Contact.hpp"
 
-void	Contact::set_index(int _index)
+bool	Contact::SetIndex(int _index)
 {
 	index = _index + 1;
+	return (true);
 }
 
-void	Contact::add_contact(std::string input, int i)
+bool	Contact::SetFirstName(std::string _first_name)
+{
+	first_name = _first_name;
+	return (true);
+}
+
+bool	Contact::SetLastName(std::string _last_name)
+{
+	last_name = _last_name;
+	return (true);
+}
+
+bool	Contact::SetNickname(std::string _nickname)
+{
+	nickname = _nickname;
+	return (true);
+}
+
+bool	Contact::SetPhoneNumber(std::string _phone_number)
+{
+	int	digit = 0;
+
+	for (int i = 0; _phone_number[i]; i++)
+	{
+		if (isdigit(_phone_number[i]))
+		{
+			digit++;
+		}
+		else if (_phone_number[i] != '-')
+			return (false);
+	}
+	if (digit == 0)
+		return (false);
+	if (_phone_number.length() < 11)
+		return (false);
+	phone_number = _phone_number;
+	return (true);
+}
+
+bool	Contact::SetDarkestSecret(std::string _darkest_secret)
+{
+	darkest_secret = _darkest_secret;
+	return (true);
+}
+
+bool	Contact::AddContact(std::string input, int i)
 {
 	if (i == 0)
-		first_name = input;
+		SetFirstName(input);
 	else if (i == 1)
-		last_name = input;
+		SetLastName(input);
 	else if (i == 2)
-		nickname = input;
+		SetNickname(input);
 	else if (i == 3)
-		phone_number = input;
+	{
+		if (SetPhoneNumber(input) == false)
+			return (false);
+	}
 	else if (i == 4)
-		darkest_secret = input;
+		SetDarkestSecret(input);
+	return (true);
 }
 
-void	print_column(std::string str)
+void	Contact::PrintColumn(std::string &str)
 {
 	std::string tmp;
 
@@ -30,26 +80,28 @@ void	print_column(std::string str)
 		tmp = str;
 		tmp.resize(10);
 		tmp[9] = '.';
-		std::cout << std::setw(10) << std::right << tmp << "|";
+		std::cout << std::setw(10) << std::right << tmp;
 	}
 	else
-		std::cout << std::setw(10) << std::right << str << "|";
+		std::cout << std::setw(10) << std::right << str;
+	if (&str != &nickname)
+		std::cout << "|";
 }
 
-void	Contact::search()
+void	Contact::Search()
 {
 	std::string tmp;
 
 	if (index == 0)
 		return ;
 	std::cout << std::setw(10) << std::right << index << "|";
-	print_column(first_name);
-	print_column(last_name);
-	print_column(nickname);
+	PrintColumn(first_name);
+	PrintColumn(last_name);
+	PrintColumn(nickname);
 	std::cout << std::endl;
 }
 
-void	Contact::display()
+void	Contact::Display()
 {
 	std::cout << "First Name : " << first_name << std::endl;
 	std::cout << "Last Name : " << last_name << std::endl;

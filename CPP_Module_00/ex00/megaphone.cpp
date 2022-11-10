@@ -2,10 +2,8 @@
 
 char	*str_upper(char *str)
 {
-	int	i;
+	int	i(0);
 
-	std::cout << &str << std::endl;
-	i = 0;
 	while (str[i])
 	{
 		str[i] = toupper(str[i]);
@@ -18,7 +16,6 @@ int	main(int argc, char *argv[])
 {
 	std::string str;
 
-	std::cout << &str << std::endl;
 	str.clear();
 	if (argc < 2)
 		str = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
