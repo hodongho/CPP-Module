@@ -10,12 +10,22 @@ bool	Contact::SetIndex(int _index)
 
 bool	Contact::SetFirstName(std::string _first_name)
 {
+	for(int	i = 0; i < _first_name[i]; i++)
+	{
+		if (!isalpha(_first_name[i]))
+			return (false);
+	}
 	first_name = _first_name;
 	return (true);
 }
 
 bool	Contact::SetLastName(std::string _last_name)
 {
+	for(int	i = 0; i < _last_name[i]; i++)
+	{
+		if (isdigit(_last_name[i]))
+			return (false);
+	}
 	last_name = _last_name;
 	return (true);
 }
@@ -55,20 +65,20 @@ bool	Contact::SetDarkestSecret(std::string _darkest_secret)
 
 bool	Contact::AddContact(std::string input, int i)
 {
+	bool	ret;
+
+	ret = true;
 	if (i == 0)
-		SetFirstName(input);
+		ret = SetFirstName(input);
 	else if (i == 1)
-		SetLastName(input);
+		ret = SetLastName(input);
 	else if (i == 2)
-		SetNickname(input);
+		ret = SetNickname(input);
 	else if (i == 3)
-	{
-		if (SetPhoneNumber(input) == false)
-			return (false);
-	}
+		ret = SetPhoneNumber(input);
 	else if (i == 4)
-		SetDarkestSecret(input);
-	return (true);
+		ret = SetDarkestSecret(input);
+	return (ret);
 }
 
 void	Contact::PrintColumn(std::string &str)
@@ -94,11 +104,11 @@ void	Contact::Search()
 
 	if (index == 0)
 		return ;
-	std::cout << std::setw(10) << std::right << index << "|";
+	std::cout << std::endl << std::setw(10) << std::right << index << "|";
 	PrintColumn(first_name);
 	PrintColumn(last_name);
 	PrintColumn(nickname);
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 }
 
 void	Contact::Display()

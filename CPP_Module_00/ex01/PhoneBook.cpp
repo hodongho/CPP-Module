@@ -24,12 +24,12 @@ void	PhoneBook::AddContact()
 		getline(std::cin, input);
 		if (input.empty() == true)
 		{
-			std::cout << "Input is empty!" << std::endl;
+			std::cout << std::endl << "-----Input is empty!-----" << std::endl << std::endl;
 			i--;
 		}
 		if (Contacts[index].AddContact(input, i) == false)
 		{
-			std::cout << "Wrong Phone Number!" << std::endl;
+			std::cout << std::endl << "-----Wrong input!-----" << std::endl << std::endl;
 			i--;
 		}
 	}
@@ -51,12 +51,12 @@ void	PhoneBook::Search()
 		getline(std::cin, input);
 		if (input.empty() == true)
 		{
-			std::cout << "Input is empty!" << std::endl;
+			std::cout << std::endl << "-----Input is empty!-----" << std::endl << std::endl;
 			continue ;
 		}
 		if (input[1] != 0 || input[0] < '1' || input[0] > '8' || input[0] > index + '0')
 		{
-			std::cout << "Wrong index!" << std::endl;
+			std::cout << std::endl << "-----Wrong index!-----" << std::endl << std::endl;
 			continue ;
 		}
 		break ;

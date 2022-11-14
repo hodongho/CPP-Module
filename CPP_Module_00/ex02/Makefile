@@ -4,7 +4,7 @@ CXXFLAGS= -std=c++98
 
 NAME	= Account
 
-SRCS	= test.cpp Account.cpp
+SRCS	= tests.cpp Account.cpp
 OBJS	= $(SRCS:.cpp=.o)
 
 ifdef DFLAG
