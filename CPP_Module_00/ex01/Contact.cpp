@@ -104,11 +104,11 @@ void	Contact::Search()
 
 	if (index == 0)
 		return ;
-	std::cout << std::endl << std::setw(10) << std::right << index << "|";
+	std::cout << std::setw(10) << std::right << index << "|";
 	PrintColumn(first_name);
 	PrintColumn(last_name);
 	PrintColumn(nickname);
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 }
 
 void	Contact::Display()

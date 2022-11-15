@@ -5,6 +5,7 @@ PhoneBook::PhoneBook()
 {
 	memset(Contacts, 0, sizeof(Contacts));
 	index = 0;
+	TotalIndex = 0;
 }
 
 void	PhoneBook::AddContact()
@@ -35,6 +36,8 @@ void	PhoneBook::AddContact()
 	}
 	Contacts[index].SetIndex(index);
 	index++;
+	if (TotalIndex < 8)
+		TotalIndex++;
 	if (index == 8)
 		index = 0;
 }
@@ -43,18 +46,24 @@ void	PhoneBook::Search()
 {
 	std::string	input;
 
+	if (TotalIndex == 0)
+	{
+		std::cout << std::endl << "-----Please ADD Contacts!-----" << std::endl << std::endl;
+		return ;
+	}
 	while(1)
 	{
-		for(int	i = 0; i < index; i++)
+		std::cout << std::endl;
+		for(int	i = 0; i < 8; i++)
 			Contacts[i].Search();
-		std::cout << "Please select any index : ";
+		std::cout << std::endl << "Please select any index : ";
 		getline(std::cin, input);
 		if (input.empty() == true)
 		{
 			std::cout << std::endl << "-----Input is empty!-----" << std::endl << std::endl;
 			continue ;
 		}
-		if (input[1] != 0 || input[0] < '1' || input[0] > '8' || input[0] > index + '0')
+		if (input[1] != 0 || input[0] < '1' || input[0] > '8' || input[0] > TotalIndex + '0')
 		{
 			std::cout << std::endl << "-----Wrong index!-----" << std::endl << std::endl;
 			continue ;

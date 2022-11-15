@@ -1,6 +1,6 @@
 #include <iostream>
 
-char	*str_upper(char *str)
+std::string	str_upper(char *str)
 {
 	int	i(0);
 
@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 	std::string str;
 
 	str.clear();
-	if (argc < 2)
+	if (argc == 1)
 		str = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	for(int i = 1; i < argc; i++)
 		str += str_upper(argv[i]);
