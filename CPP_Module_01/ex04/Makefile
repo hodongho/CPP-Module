@@ -1,11 +1,11 @@
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
-NAME	= Zombie
+NAME	= replace
 
-SRCS	= main.cpp Zombie.cpp zombieHorde.cpp
+SRCS	= main.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADER	= Zombie.hpp
+HEADER	= main.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -15,8 +15,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
-
-$(OBJS) : $(HEADER)
 
 clean :
 	$(RM) $(OBJS)

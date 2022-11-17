@@ -9,9 +9,9 @@ class Zombie {
 	public:
 		Zombie();
 		~Zombie();
-		std::string	getName();
-		void		SetName( std::string _name);
-		void		announce( void );
+		std::string	const	&getName();
+		void				SetName( std::string _name);
+		void				announce( void );
 };
 
 Zombie* zombieHorde( int N, std::string name );

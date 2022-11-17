@@ -3,8 +3,9 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= Weapon
 
-SRCS	= main.cpp
+SRCS	= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJS	= $(SRCS:.cpp=.o)
+HEADER	= Weapon.hpp HumanA.hpp HumanB.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -14,6 +15,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(OBJS) : $(HEADER)
 
 clean :
 	$(RM) $(OBJS)

@@ -2,18 +2,23 @@
 
 Zombie::Zombie( std::string _name )
 {
-	name = _name;
-	std::cout << "The " << name << " is born" << std::endl;
+	setName(_name);
+	std::cout << "The " << getName() << " is born" << std::endl;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << "The " << name << " is dead" << std::endl;
+	std::cout << "The " << getName() << " is dead" << std::endl;
 }
 
-std::string	Zombie::getName()
+std::string	const &Zombie::getName()
 {
 	return (name);
+}
+
+void	Zombie::setName(std::string _name)
+{
+	name = _name;
 }
 
 void	Zombie::announce( void )
