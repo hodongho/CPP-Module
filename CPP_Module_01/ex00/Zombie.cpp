@@ -1,10 +1,5 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie()
-{
-	std::cout << "Zombie is born" << std::endl;
-}
-
 Zombie::Zombie( std::string _name )
 {
 	name = _name;
@@ -16,7 +11,12 @@ Zombie::~Zombie()
 	std::cout << "The " << name << " is dead" << std::endl;
 }
 
+std::string	Zombie::getName()
+{
+	return (name);
+}
+
 void	Zombie::announce( void )
 {
-	std::cout << name << " : BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << getName() << " : BraiiiiiiinnnzzzZ..." << std::endl;
 }

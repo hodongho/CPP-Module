@@ -1,10 +1,13 @@
 CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS= -std=c++98
+# CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= Zombie
 
 SRCS	= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJS	= $(SRCS:.cpp=.o)
+
+HEADER	= Zombie.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -14,6 +17,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(OBJS) : $(HEADER)
 
 clean :
 	$(RM) $(OBJS)
