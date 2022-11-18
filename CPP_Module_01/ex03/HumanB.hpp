@@ -1,5 +1,8 @@
-#include <iostream>
-#include "Weapon.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
+
+# include <iostream>
+# include "Weapon.hpp"
 
 class HumanB {
 	private:
@@ -11,3 +14,5 @@ class HumanB {
 		void				setWeapon(Weapon &_WeaponB);
 		void				attack();
 };
+
+#endif

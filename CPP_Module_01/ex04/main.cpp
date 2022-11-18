@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-std::string	read_file(char *argv[])
+std::string	readFile(char *argv[])
 {
 	std::string		contents;
 	std::string		tmp;
@@ -42,7 +42,7 @@ std::string	replace(std::string contents, std::string s1, std::string s2)
 	return (result);
 }
 
-void	save_contents(std::string contents, std::string filename)
+void	saveContents(std::string contents, std::string filename)
 {
 	std::ofstream	file(filename + ".replace");
 
@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
 
 	std::string contents;
 
-	contents = read_file(argv);
+	contents = readFile(argv);
 	contents = replace(contents, argv[2], argv[3]);
-	save_contents(contents, argv[1]);
+	saveContents(contents, argv[1]);
 	return(0);
 }
