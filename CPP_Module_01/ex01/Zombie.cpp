@@ -15,7 +15,7 @@ std::string	const &Zombie::getName()
 	return (name);
 }
 
-void	Zombie::SetName( std::string _name)
+void	Zombie::setName( std::string _name)
 {
 	name = _name;
 }
