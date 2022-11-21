@@ -11,7 +11,7 @@ Zombie::~Zombie()
 	std::cout << "The " << getName() << " is dead" << std::endl;
 }
 
-std::string	const &Zombie::getName()
+const std::string &Zombie::getName()
 {
 	return (name);
 }

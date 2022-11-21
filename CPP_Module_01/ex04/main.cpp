@@ -7,9 +7,9 @@ std::string	readFile(char *argv[])
 	std::string		tmp;
 	std::ifstream	file(argv[1]);
 
-	if (file.fail())
+	if (!file.is_open())
 	{
-		std::cerr << "File doesn't exist!" << std::endl;
+		std::cerr << "File open error!" << std::endl;
 		exit(1);
 	}
 	while (true)
@@ -28,6 +28,8 @@ std::string	replace(std::string contents, std::string s1, std::string s2)
 	size_t		start = 0;
 	size_t		end = 0;
 
+	if (s1[0] == 0)
+		return (contents);
 	while (true)
 	{
 		end = contents.find(s1, start);
@@ -51,7 +53,7 @@ void	saveContents(std::string contents, std::string filename)
 
 int main(int argc, char *argv[])
 {
-	if (argc != 4 || argv[1][0] == 0 || argv[2][0] == 0)
+	if (argc != 4)
 	{
 		std::cerr << "Wrong arguments!" << std::endl;
 		return (1);

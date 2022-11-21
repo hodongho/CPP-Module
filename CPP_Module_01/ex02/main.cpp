@@ -8,7 +8,7 @@ int main()
 
 	std::cout
 		<< "strORI : " << &str << std::endl
-		<< "strPTR : " << &stringPTR << std::endl
+		<< "strPTR : " << stringPTR << std::endl
 		<< "strREF : " << &stringREF << std::endl << std::endl;
 
 	std::cout

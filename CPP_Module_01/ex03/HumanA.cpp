@@ -5,7 +5,7 @@ HumanA::HumanA(std::string _name, Weapon &_WeaponA)
 {
 }
 
-std::string const	&HumanA::getName()
+const std::string	&HumanA::getName()
 {
 	return(name);
 }

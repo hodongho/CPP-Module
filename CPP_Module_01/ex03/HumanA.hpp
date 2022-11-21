@@ -10,7 +10,7 @@ class HumanA {
 		Weapon		&WeaponA;
 	public:
 		HumanA(std::string _name, Weapon &_WeaponA);
-		std::string const	&getName();
+		const std::string	&getName();
 		void				setWeapon(Weapon _WeaponA);
 		void				attack();
 };

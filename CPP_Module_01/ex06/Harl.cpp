@@ -51,25 +51,30 @@ int	CompareLevel(std::string level)
 
 void	Harl::complain( std::string level )
 {
-	void	(Harl::*f[5])(void) = {0, };
+	void	(Harl::*f[4])(void) = {0, };
+	int		i = 0;
 
 	switch (CompareLevel(level))
 	{
 		case DEBUG:
 		{
-			f[0] = &Harl::debug;
+			f[i] = &Harl::debug;
+			i++;
 		}
 		case INFO:
 		{
-			f[1] = &Harl::info;
+			f[i] = &Harl::info;
+			i++;
 		}
 		case WARNING:
 		{
-			f[2] = &Harl::warning;
+			f[i] = &Harl::warning;
+			i++;
 		}
 		case ERROR:
 		{
-			f[3] = &Harl::error;
+			f[i] = &Harl::error;
+			i++;
 			break ;
 		}
 		default:
@@ -78,7 +83,7 @@ void	Harl::complain( std::string level )
 			return ;
 		}
 	}
-	for (int i = CompareLevel(level); f[i]; i++)
+	for (int i = 0; f[i]; i++)
 		(this->*f[i])();
 }
 

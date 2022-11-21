@@ -10,7 +10,7 @@ class HumanB {
 		Weapon		*WeaponB;
 	public:
 		HumanB(std::string _name);
-		std::string const	&getName();
+		const std::string 	&getName();
 		void				setWeapon(Weapon &_WeaponB);
 		void				attack();
 };

@@ -5,7 +5,7 @@ HumanB::HumanB(std::string _name)
 {
 }
 
-std::string const	&HumanB::getName()
+const std::string	&HumanB::getName()
 {
 	return(name);
 }
@@ -17,5 +17,10 @@ void	HumanB::setWeapon(Weapon &_WeaponB)
 
 void	HumanB::attack()
 {
+	if (WeaponB == 0)
+	{
+		std::cout << getName() << " doesn't have Weapon!" << std::endl;
+		return ;
+	}
 	std::cout << getName() << " attacks with their " << WeaponB->getType() << std::endl;
 }
