@@ -28,7 +28,7 @@ std::string	replace(std::string contents, std::string s1, std::string s2)
 	size_t		start = 0;
 	size_t		end = 0;
 
-	if (s1[0] == 0)
+	if (s1.empty())
 		return (contents);
 	while (true)
 	{
