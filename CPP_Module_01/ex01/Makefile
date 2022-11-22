@@ -7,10 +7,6 @@ SRCS	= main.cpp Zombie.cpp zombieHorde.cpp
 OBJS	= $(SRCS:.cpp=.o)
 HEADER	= Zombie.hpp
 
-ifdef DFLAG
-	CXXFLAGS += -g2 -fsanitize=address
-endif
-
 all : $(NAME)
 
 $(NAME) : $(OBJS)
@@ -20,10 +16,6 @@ $(OBJS) : $(HEADER)
 
 clean :
 	$(RM) $(OBJS)
-
-debug:
-	@make fclean
-	@make DFLAG=1 all
 
 fclean :
 	make clean
