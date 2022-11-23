@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Fixed.hpp"
 
 Fixed::Fixed()
@@ -35,5 +34,5 @@ int	Fixed::getRawBits(void) const
 void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	fixedPoint = raw << fractionalBit;
+	fixedPoint = raw;
 }
