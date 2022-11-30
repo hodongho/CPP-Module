@@ -142,25 +142,21 @@ int	Fixed::toInt(void) const
 
 Fixed&	Fixed::min(Fixed& f1, Fixed& f2)
 {
-	std::cout << "This is original min" << std::endl;
 	return (f1 < f2 ? f1 : f2);
 }
 
 const Fixed&	Fixed::min(const Fixed& f1, const Fixed& f2)
 {
-	std::cout << "This is const min" << std::endl;
 	return (f1 < f2 ? f1 : f2);
 }
 
 Fixed&	Fixed::max(Fixed& f1, Fixed& f2)
 {
-	std::cout << "This is original max" << std::endl;
 	return (f1 > f2 ? f1 : f2);
 }
 
 const Fixed&	Fixed::max(const Fixed& f1, const Fixed& f2)
 {
-	std::cout << "This is const max" << std::endl;
 	return (f1 > f2 ? f1 : f2);
 }
 
