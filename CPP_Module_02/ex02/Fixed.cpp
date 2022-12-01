@@ -75,22 +75,34 @@ bool Fixed::operator!=(const Fixed& _Fixed) const
 
 Fixed	Fixed::operator+(const Fixed& _Fixed) const
 {
-	return (Fixed(this->toFloat() + _Fixed.toFloat()));
+	Fixed	ret(*this);
+
+	ret.setRawBits(getRawBits() + _Fixed.getRawBits());
+	return (ret);
 }
 
 Fixed	Fixed::operator-(const Fixed& _Fixed) const
 {
-	return (Fixed(this->toFloat() - _Fixed.toFloat()));
+	Fixed	ret(*this);
+
+	ret.setRawBits(getRawBits() - _Fixed.getRawBits());
+	return (ret);
 }
 
 Fixed	Fixed::operator*(const Fixed& _Fixed) const
 {
-	return (Fixed(this->toFloat() * _Fixed.toFloat()));
+	Fixed	ret(*this);
+
+	ret.setRawBits((getRawBits() * _Fixed.getRawBits()) >> fractionalBit);
+	return (ret);
 }
 
 Fixed	Fixed::operator/(const Fixed& _Fixed) const
 {
-	return (Fixed(this->toFloat() / _Fixed.toFloat()));
+	Fixed	ret(*this);
+
+	ret.setRawBits((getRawBits() << fractionalBit) / _Fixed.getRawBits());
+	return (ret);
 }
 
 //Increase and Decrease//
