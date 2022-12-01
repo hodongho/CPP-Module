@@ -57,5 +57,14 @@ int main()
 
 	//Arithmetic
 	std::cout << "a: " << a << " b: " << b << " c: " << c << std::endl;
+	a = b + c;
+	std::cout << "a: " << a << " b: " << b << " c: " << c << std::endl;
+	a = b - c;
+	std::cout << "a: " << a << " b: " << b << " c: " << c << std::endl;
+	c = 10;
+	a = b * c;
+	std::cout << "a: " << a << " b: " << b << " c: " << c << std::endl;
+	a = b / c;
+	std::cout << "a: " << a << " b: " << b << " c: " << c << std::endl;
 	return (0);
 }
