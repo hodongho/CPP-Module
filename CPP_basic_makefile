@@ -16,6 +16,7 @@ ifdef 98
 	CXXFLAGS += -pedantic
 endif
 
+all : $(NAME)
 
 debug:
 	@make fclean
@@ -24,9 +25,6 @@ debug:
 98:
 	@make fclean
 	@make 98=1 all
-
-
-all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@

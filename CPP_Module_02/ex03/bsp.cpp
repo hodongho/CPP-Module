@@ -26,7 +26,6 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	max_y = Fixed::max(a.getY(), b.getY());
 	max_y = Fixed::max(max_y, c.getY());
 
-	std::cout << min_x << " " << min_y << " " << max_x << " " << max_y << std::endl;
 	if (point.getX() < min_x || point.getY() < min_y || point.getX() > max_x || point.getY() > max_y)
 		return (ret);
 
@@ -34,9 +33,9 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed	bcp = outer_product(b, c, point);
 	Fixed	cap = outer_product(c, a, point);
 
-	if (abp <= 0 && bcp <= 0 && cap <= 0)
+	if (abp < 0 && bcp < 0 && cap < 0)
 		ret = true;
-	if (abp >= 0 && bcp >= 0 && cap >= 0)
+	if (abp > 0 && bcp > 0 && cap > 0)
 		ret = true;
 	return (ret);
 }
