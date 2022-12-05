@@ -3,9 +3,9 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS	= main.cpp ClapTrap.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= ClapTrap.hpp ScavTrap.hpp
+HEADERS	= ClapTrap.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
