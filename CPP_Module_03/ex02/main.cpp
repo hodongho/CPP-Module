@@ -1,6 +1,6 @@
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
-void	status(ClapTrap& ClapTrap1, ClapTrap& ClapTrap2)
+void	status(FragTrap& FragTrap1, ClapTrap& ClapTrap1)
 {
 	std::cout << std::endl << "<      Status      >" << std::endl;
 	std::cout << "[ " << ClapTrap1.getName() << " ]";
@@ -8,58 +8,82 @@ void	status(ClapTrap& ClapTrap1, ClapTrap& ClapTrap2)
 		<< " Hit Point: " << ClapTrap1.getHitPoint()
 		<< " Energy Point: " << ClapTrap1.getEnergyPoint()
 		<< " Attack Damage: " << ClapTrap1.getAttackDamage() << std::endl;
-	std::cout << "[ " << ClapTrap2.getName() << " ]";
+	std::cout << "[ " << FragTrap1.getName() << " ]";
 	std::cout
-		<< " Hit Point: " << ClapTrap2.getHitPoint()
-		<< " Energy Point: " << ClapTrap2.getEnergyPoint()
-		<< " Attack Damage: " << ClapTrap2.getAttackDamage() << std::endl;
+		<< " Hit Point: " << FragTrap1.getHitPoint()
+		<< " Energy Point: " << FragTrap1.getEnergyPoint()
+		<< " Attack Damage: " << FragTrap1.getAttackDamage() << std::endl;
 	std::cout << std::endl;
+}
+
+void	status(FragTrap& FragTrap1, FragTrap& FragTrap2)
+{
+	std::cout << std::endl << "<      Status      >" << std::endl;
+	std::cout << "[ " << FragTrap1.getName() << " ]";
+	std::cout
+		<< " Hit Point: " << FragTrap1.getHitPoint()
+		<< " Energy Point: " << FragTrap1.getEnergyPoint()
+		<< " Attack Damage: " << FragTrap1.getAttackDamage() << std::endl;
+	std::cout << "[ " << FragTrap2.getName() << " ]";
+	std::cout
+		<< " Hit Point: " << FragTrap2.getHitPoint()
+		<< " Energy Point: " << FragTrap2.getEnergyPoint()
+		<< " Attack Damage: " << FragTrap2.getAttackDamage() << std::endl;
+	std::cout << std::endl;
+}
+
+void	status(FragTrap& FragTrap)
+{
+	std::cout << std::endl << "<      Status      >" << std::endl;
+	std::cout << "[ " << FragTrap.getName() << " ]";
+	std::cout
+		<< " Hit Point: " << FragTrap.getHitPoint()
+		<< " Energy Point: " << FragTrap.getEnergyPoint()
+		<< " Attack Damage: " << FragTrap.getAttackDamage() << std::endl << std::endl;
 }
 
 int main()
 {
+	FragTrap F1("F1");
 	ClapTrap C1("C1");
-	ClapTrap C2("C2");
 
-	status(C1, C2);
+	std::cout << std::endl;
 
-	std::cout << "<  C1 attack C2  >" << std::endl << std::endl;
-	C1.attack("C2");
-	status(C1, C2);
-	std::cout << "<  C2 take Damage 0  >" << std::endl;
-	C2.takeDamage(C1.getAttackDamage());
-	status(C1, C2);
-	std::cout << "<  C2 repaired 1  >" << std::endl;
-	C2.beRepaired(1);
-	status(C1, C2);
+	F1.highFivesGuys();
 
-	std::cout << "----------------------------------------------" << std::endl;
+	status(F1, C1);
 
-	std::cout << std::endl << "<  C2 repaired 9  >" << std::endl;
-	for (int i = 0; i < 9; i++)
-		C2.beRepaired(1);
-	status(C1, C2);
-	std::cout << "<  C2 try attack  >" << std::endl << std::endl;
-	C2.attack("C1");
-	std::cout << std::endl << "<  C2 try repair  >" << std::endl << std::endl;
-	C2.beRepaired(1);
-	status(C1, C2);
+	F1.attack("C1");
+	status(F1, C1);
+	C1.takeDamage(F1.getAttackDamage());
+	status(F1, C1);
+	C1.beRepaired(1);
+	status(F1, C1);
 
 	std::cout << "----------------------------------------------" << std::endl;
 
-	std::cout << std::endl << "<  C2 take Damage 20  >" << std::endl;
-	C2.takeDamage(20);
-	C2.takeDamage(20);
-	status(C1, C2);
-	std::cout << "<  C2 try attack  >" << std::endl << std::endl;
-	C2.attack("C1");
-	std::cout << std::endl << "<  C2 try repair  >" << std::endl << std::endl;
-	C2.beRepaired(1);
-	status(C1, C2);
+	for (int i = 0; i < 99; i++)
+		F1.beRepaired(1);
+	status(F1);
+	F1.attack("C1");
+	F1.beRepaired(1);
+	status(F1);
 
 	std::cout << "----------------------------------------------" << std::endl;
 
-	ClapTrap C3(C1);
-	status(C1, C3);
+	FragTrap F2("F2");
+
+	F2.takeDamage(200);
+	status(F2);
+	F2.attack("F1");
+	F2.beRepaired(1);
+	status(F2);
+
+	std::cout << "----------------------------------------------" << std::endl;
+
+	FragTrap F3(F2);
+	status(F2, F3);
+
+	std::cout << std::endl;
 	return (0);
 }

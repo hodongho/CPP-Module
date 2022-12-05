@@ -3,29 +3,11 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	= main.cpp ClapTrap.cpp
+SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= ClapTrap.hpp
-
-ifdef DFLAG
-	CXXFLAGS += -g2 -fsanitize=address
-endif
-
-ifdef 98
-	CXX	= g++
-	CXXFLAGS += -pedantic
-endif
-
+HEADERS	= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 all : $(NAME)
-
-debug:
-	@make fclean
-	@make DFLAG=1 all
-
-98:
-	@make fclean
-	@make 98=1 all
 
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@

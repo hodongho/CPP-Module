@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-void	status(ClapTrap& ClapTrap1, ScavTrap& ScavTrap2)
+void	status(ScavTrap& ScavTrap1, ClapTrap& ClapTrap1)
 {
 	std::cout << std::endl << "<      Status      >" << std::endl;
 	std::cout << "[ " << ClapTrap1.getName() << " ]";
@@ -8,11 +8,11 @@ void	status(ClapTrap& ClapTrap1, ScavTrap& ScavTrap2)
 		<< " Hit Point: " << ClapTrap1.getHitPoint()
 		<< " Energy Point: " << ClapTrap1.getEnergyPoint()
 		<< " Attack Damage: " << ClapTrap1.getAttackDamage() << std::endl;
-	std::cout << "[ " << ScavTrap2.getName() << " ]";
+	std::cout << "[ " << ScavTrap1.getName() << " ]";
 	std::cout
-		<< " Hit Point: " << ScavTrap2.getHitPoint()
-		<< " Energy Point: " << ScavTrap2.getEnergyPoint()
-		<< " Attack Damage: " << ScavTrap2.getAttackDamage() << std::endl;
+		<< " Hit Point: " << ScavTrap1.getHitPoint()
+		<< " Energy Point: " << ScavTrap1.getEnergyPoint()
+		<< " Attack Damage: " << ScavTrap1.getAttackDamage() << std::endl;
 	std::cout << std::endl;
 }
 
@@ -32,53 +32,58 @@ void	status(ScavTrap& ScavTrap1, ScavTrap& ScavTrap2)
 	std::cout << std::endl;
 }
 
+void	status(ScavTrap& ScavTrap)
+{
+	std::cout << std::endl << "<      Status      >" << std::endl;
+	std::cout << "[ " << ScavTrap.getName() << " ]";
+	std::cout
+		<< " Hit Point: " << ScavTrap.getHitPoint()
+		<< " Energy Point: " << ScavTrap.getEnergyPoint()
+		<< " Attack Damage: " << ScavTrap.getAttackDamage() << std::endl << std::endl;
+}
+
 int main()
 {
-	ClapTrap C1("C1");
 	ScavTrap S1("S1");
+	ClapTrap C1("C1");
 
-	status(C1, S1);
+	std::cout << std::endl;
 
-	std::cout << "<  C1 attack S1  >" << std::endl << std::endl;
-	C1.attack("S1");
-	status(C1, S1);
-	std::cout << "<  S1 take Damage 0  >" << std::endl;
-	S1.takeDamage(C1.getAttackDamage());
-	status(C1, S1);
-	std::cout << "<  S1 repaired 1  >" << std::endl;
-	S1.beRepaired(1);
-	status(C1, S1);
+	S1.guardGate();
+
+	status(S1, C1);
+
+	S1.attack("C1");
+	status(S1, C1);
+	C1.takeDamage(S1.getAttackDamage());
+	status(S1, C1);
+	C1.beRepaired(1);
+	status(S1, C1);
 
 	std::cout << "----------------------------------------------" << std::endl;
 
-	std::cout << std::endl << "<  S1 repaired 9  >" << std::endl;
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 49; i++)
 		S1.beRepaired(1);
-	status(C1, S1);
-	std::cout << "<  S1 try attack  >" << std::endl << std::endl;
+	status(S1);
 	S1.attack("C1");
-	std::cout << std::endl << "<  S1 try repair  >" << std::endl << std::endl;
 	S1.beRepaired(1);
-	status(C1, S1);
+	status(S1);
 
 	std::cout << "----------------------------------------------" << std::endl;
 
-	std::cout << std::endl << "<  S1 take Damage 20  >" << std::endl;
-	S1.takeDamage(120);
-	S1.takeDamage(120);
-	status(C1, S1);
-	std::cout << "<  S1 try attack  >" << std::endl << std::endl;
-	S1.attack("C1");
-	std::cout << std::endl << "<  S1 try repair  >" << std::endl << std::endl;
-	S1.beRepaired(1);
-	status(C1, S1);
+	ScavTrap S2("S2");
+
+	S2.takeDamage(200);
+	status(S2);
+	S2.attack("S1");
+	S2.beRepaired(1);
+	status(S2);
 
 	std::cout << "----------------------------------------------" << std::endl;
 
-	ScavTrap S2(S1);
-	status(S1, S2);
+	ScavTrap S3(S2);
+	status(S2, S3);
 
-	S2.guardGate();
 	std::cout << std::endl;
 	return (0);
 }

@@ -23,43 +23,34 @@ int main()
 
 	status(C1, C2);
 
-	std::cout << "<  C1 attack C2  >" << std::endl << std::endl;
 	C1.attack("C2");
 	status(C1, C2);
-	std::cout << "<  C2 take Damage 0  >" << std::endl;
 	C2.takeDamage(C1.getAttackDamage());
 	status(C1, C2);
-	std::cout << "<  C2 repaired 1  >" << std::endl;
 	C2.beRepaired(1);
 	status(C1, C2);
 
-	std::cout << "----------------------------------------------" << std::endl;
+	std::cout << "----------------------------------------------" << std::endl << std::endl;
 
-	std::cout << std::endl << "<  C2 repaired 9  >" << std::endl;
-	for (int i = 0; i < 9; i++)
+	for(int i = 0; i < 9; i++)
 		C2.beRepaired(1);
 	status(C1, C2);
-	std::cout << "<  C2 try attack  >" << std::endl << std::endl;
 	C2.attack("C1");
-	std::cout << std::endl << "<  C2 try repair  >" << std::endl << std::endl;
 	C2.beRepaired(1);
 	status(C1, C2);
 
-	std::cout << "----------------------------------------------" << std::endl;
+	std::cout << "----------------------------------------------" << std::endl << std::endl;
 
-	std::cout << std::endl << "<  C2 take Damage 20  >" << std::endl;
-	C2.takeDamage(20);
-	C2.takeDamage(20);
+	C1.takeDamage(20);
 	status(C1, C2);
-	std::cout << "<  C2 try attack  >" << std::endl << std::endl;
-	C2.attack("C1");
-	std::cout << std::endl << "<  C2 try repair  >" << std::endl << std::endl;
-	C2.beRepaired(1);
+	C1.attack("C2");
+	C1.beRepaired(1);
 	status(C1, C2);
 
 	std::cout << "----------------------------------------------" << std::endl;
 
 	ClapTrap C3(C1);
 	status(C1, C3);
+
 	return (0);
 }
