@@ -2,7 +2,7 @@
 
 Cat::Cat()
 {
-	setType("Cat");
+	type = "Cat";
 	std::cout << getType() << " is born!" << std::endl;
 }
 
@@ -15,7 +15,7 @@ Cat::Cat(Cat& copy)
 Cat& Cat::operator=(Cat& copy)
 {
 	if (this != &copy)
-		setType(copy.getType());
+		type = copy.getType();
 	return (*this);
 }
 

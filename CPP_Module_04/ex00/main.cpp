@@ -18,11 +18,12 @@ int	main()
 
 	std::cout << std::endl << "---------------------------------------------" << std::endl << std::endl;
 
-	const WrongAnimal* metaa = new WrongAnimal();
-	const WrongAnimal* ii = new WrongCat();
+	const WrongAnimal* wrongMeta = new WrongAnimal();
+	const WrongAnimal* wrongI = new WrongCat();
 
-	std::cout << ii->getType() << " " << std::endl;
-	ii->makeSound();
-	metaa->makeSound();
+	std::cout << wrongI->getType() << " " << std::endl;
+	wrongI->makeSound();
+	wrongMeta->makeSound();
+
 	return (0);
 }

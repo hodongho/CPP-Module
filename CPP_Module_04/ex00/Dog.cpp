@@ -2,7 +2,7 @@
 
 Dog::Dog()
 {
-	setType("Dog");
+	type = "Dog";
 	std::cout << getType() << " is born!" << std::endl;
 }
 
@@ -15,7 +15,7 @@ Dog::Dog(Dog& copy)
 Dog& Dog::operator=(Dog& copy)
 {
 	if (this != &copy)
-		setType(copy.getType());
+		type = copy.getType();
 	return (*this);
 }
 

@@ -16,7 +16,7 @@ Animal& Animal::operator=(Animal& copy)
 {
 	if (this != &copy)
 	{
-		setType(copy.getType());
+		type = copy.getType();
 	}
 	return (*this);
 }
@@ -26,12 +26,7 @@ Animal::~Animal()
 	std::cout << getType() << " is dead!" << std::endl;
 }
 
-void	Animal::setType(std::string _type)
-{
-	type = _type;
-}
-
-std::string	Animal::getType() const
+std::string	const& Animal::getType() const
 {
 	return (type);
 }
