@@ -81,5 +81,8 @@ int	main()
 
 		std::cout << std::endl;
 	}
+	// {
+	// 	Animal animal;
+	// }
 	return (0);
 }

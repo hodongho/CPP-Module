@@ -3,9 +3,10 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	= main.cpp
+SRCS	=	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= main.hpp
+HEADERS	=	AMateria.hpp Character.hpp Cure.hpp Ice.hpp\
+			ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address

@@ -4,8 +4,15 @@
 #include "AMateria.hpp"
 
 class Ice : public AMateria{
-	private:
-		const std::string	name = "ice";
+	public:
+		Ice();
+		Ice(Ice& copy);
+
+		Ice&	operator=(Ice& copy);
+
+		~Ice();
+
+		AMateria*	clone() const;
 };
 
 #endif
