@@ -61,7 +61,7 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
-	if (idx < 0 || idx > 3)
+	if (idx < 0 || idx > 3 || !Materia[idx])
 	{
 		std::cerr << "Parameter index is wrong!" << std::endl;
 		return ;

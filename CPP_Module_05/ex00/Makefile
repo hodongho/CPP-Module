@@ -1,12 +1,11 @@
 CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	=	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+SRCS	= main.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	=	AMateria.hpp Character.hpp Cure.hpp Ice.hpp\
-			ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
+HEADERS	= main.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -14,7 +13,7 @@ endif
 
 ifdef 98
 	CXX	= g++
-	CXXFLAGS += -pedantic  -g
+	CXXFLAGS += -pedantic
 endif
 
 all : $(NAME)

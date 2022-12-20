@@ -12,8 +12,7 @@ Cure::Cure(Cure& copy)
 
 Cure&	Cure::operator=(Cure& copy)
 {
-	if (this != &copy)
-		type = copy.type;
+	(void)copy;
 	return (*this);
 }
 

@@ -12,8 +12,7 @@ Ice::Ice(Ice& copy)
 
 Ice&	Ice::operator=(Ice& copy)
 {
-	if (this != &copy)
-		type = copy.type;
+	(void)copy;
 	return (*this);
 }
 

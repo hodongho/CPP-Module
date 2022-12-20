@@ -3,103 +3,84 @@
 #include "Character.hpp"
 #include "MateriaSource.hpp"
 
-// int main()
-// {
-// 	IMateriaSource* src = new MateriaSource();
-// 	src->learnMateria(new Ice());
-// 	src->learnMateria(new Cure());
-
-// 	ICharacter* me = new Character("me");
-
-// 	AMateria* tmp;
-// 	tmp = src->createMateria("ice");
-// 	me->equip(tmp);
-// 	tmp = src->createMateria("cure");
-// 	me->equip(tmp);
-
-// 	ICharacter* bob = new Character("bob");
-
-// 	me->use(0, *bob);
-// 	me->use(1, *bob);
-// 	delete bob;
-// 	delete me;
-// 	delete src;
-
-// 	return 0;
-// }
-
 int main() {
 	{
 		IMateriaSource* src = new MateriaSource();
-		src->learnMateria( new Ice() );
-		src->learnMateria( new Cure() );
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
 
-		ICharacter* me = new Character( "me" );
+		ICharacter* me = new Character("me");
 
 		AMateria* tmp;
 
-		tmp = src->createMateria( "ice" );
-		me->equip( tmp );
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
 
-		tmp = src->createMateria( "cure" );
-		me->equip( tmp );
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
 
-		ICharacter* bob = new Character( "bob" );
-		me->use( 0, *bob );
-		me->use( 1, *bob );
+		ICharacter* bob = new Character("bob");
+		me->use(0, *bob);
+		me->use(1, *bob);
+
 		delete bob;
 		delete me;
 		delete src;
-	}
-	{
-		std::cout << std::endl;
-		// system( "leaks ex03" );
-		std::cout << std::endl;
-	}
 
+		std::cout << std::endl;
+		system("leaks -quiet a.out");
+	}
+	std::cout << "-----------------------------------------" << std::endl << std::endl;
 	{
-		IMateriaSource* src = new MateriaSource();
-		src->learnMateria( new Ice() );
-		src->learnMateria( new Ice() );
-		src->learnMateria( new Cure() );
-		src->learnMateria( new Ice() );
+		IMateriaSource* src = new MateriaSource;
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
 
-		// tmp == 5
+		ICharacter* me = new Character("Player1");
 		AMateria* tmp;
-		tmp = new Cure();
-		src->learnMateria( tmp );
 
-		delete tmp;
-		std::cout << "Delete tmp Materia (cure)" << std::endl;
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
 
-		ICharacter* p1 = new Character( "Player1" );
-		tmp = src->createMateria( "ice" );
-		p1->equip( tmp );
-		tmp = src->createMateria( "cure" );
-		p1->equip( tmp );
-		p1->equip( NULL );  // slot[2] empty
-		tmp = src->createMateria( "cure" );
-		p1->equip( tmp );  // slot[2] filled
+		ICharacter* bob = new Character("bob");
+		me->use(0, *bob);
+		me->use(1, *bob);
+		me->use(2, *bob);
+		me->use(3, *bob);
 
-		ICharacter* bob = new Character( "bob" );
-		std::cout << "0" << std::endl;
-		p1->use( 0, *bob );
-		std::cout << "1" << std::endl;
-		p1->use( 1, *bob );
-		std::cout << "2" << std::endl;
-		p1->use( 2, *bob );
-		std::cout << "3" << std::endl;
-		p1->use( 3, *bob );  // empty
+		me->unequip(0);
+		me->unequip(1);
+		me->unequip(2);
+
+		Ice* a = new Ice();
+		std::cout << a << std::endl;
+		a = 0;
+		std::cout << a << std::endl;
+
+		int *b = (int*)malloc(sizeof(int));
+		std::cout << b << std::endl;
+		b = 0;
+		std::cout << b << std::endl;
+
+		int* c = new int();
+		std::cout << c << std::endl;
+		c = 0;
+		std::cout << c << std::endl;
+
 
 		delete bob;
-		delete p1;
+		delete me;
 		delete src;
-	}
-	{
-		std::cout << std::endl;
-		// system( "leaks ex03" );
-		std::cout << std::endl;
-	}
 
+		std::cout << std::endl;
+		system("leaks -quiet a.out");
+	}
 	return 0;
 }
