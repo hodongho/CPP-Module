@@ -74,7 +74,6 @@ int main() {
 		c = 0;
 		std::cout << c << std::endl;
 
-
 		delete bob;
 		delete me;
 		delete src;
