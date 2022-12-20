@@ -7,8 +7,8 @@
 int	main()
 {
 	{
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+		const AAnimal* j = new Dog();
+		const AAnimal* i = new Cat();
 
 		std::cout << std::endl;
 
@@ -17,7 +17,7 @@ int	main()
 	}
 	std::cout << "-----------------------------------------" << std::endl;
 	{
-		Animal* Animals[4];
+		AAnimal* AAnimals[4];
 		std::string dog = "My type is Dog";
 		std::string cat = "My type is Cat";
 
@@ -27,13 +27,13 @@ int	main()
 		{
 			if (i % 2)
 			{
-				Animals[i] = new Dog();
-				((Dog *)Animals[i])->setIdea(dog);
+				AAnimals[i] = new Dog();
+				((Dog *)AAnimals[i])->setIdea(dog);
 			}
 			else
 			{
-				Animals[i] = new Cat();
-				((Cat *)Animals[i])->setIdea(cat);
+				AAnimals[i] = new Cat();
+				((Cat *)AAnimals[i])->setIdea(cat);
 			}
 			std::cout << std::endl;
 		}
@@ -42,14 +42,14 @@ int	main()
 
 		for (int i = 0; i < 4; i++)
 		{
-			std::cout << "[ Animal " << i << ": " << Animals[i]->getType() << " ] " << std::endl;
-			if (Animals[i]->getType() == "Dog")
+			std::cout << "[ AAnimal " << i << ": " << AAnimals[i]->getType() << " ] " << std::endl;
+			if (AAnimals[i]->getType() == "Dog")
 			{
-				((Dog *)Animals[i])->showIdea();
+				((Dog *)AAnimals[i])->showIdea();
 			}
 			else
 			{
-				((Cat *)Animals[i])->showIdea();
+				((Cat *)AAnimals[i])->showIdea();
 			}
 			std::cout << std::endl;
 		}
@@ -57,7 +57,7 @@ int	main()
 		std::cout << std::endl;
 
 		for (int i = 0; i < 4; i++)
-			delete Animals[i];
+			delete AAnimals[i];
 	}
 	std::cout << "-----------------------------------------" << std::endl;
 	{
@@ -81,8 +81,5 @@ int	main()
 
 		std::cout << std::endl;
 	}
-	// {
-	// 	Animal animal;
-	// }
 	return (0);
 }

@@ -14,6 +14,8 @@ int	main()
 
 		delete j;
 		delete i;
+		std::cout << std::endl;
+		system("leaks a.out");
 	}
 	std::cout << "-----------------------------------------" << std::endl;
 	{
@@ -58,6 +60,8 @@ int	main()
 
 		for (int i = 0; i < 4; i++)
 			delete Animals[i];
+		std::cout << std::endl;
+		system("leaks a.out");
 	}
 	std::cout << "-----------------------------------------" << std::endl;
 	{
@@ -80,6 +84,7 @@ int	main()
 		D2.showIdea();
 
 		std::cout << std::endl;
+		system("leaks a.out");
 	}
 	return (0);
 }

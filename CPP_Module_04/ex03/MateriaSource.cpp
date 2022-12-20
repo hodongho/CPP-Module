@@ -29,9 +29,9 @@ void	MateriaSource::learnMateria(AMateria* m)
 {
 	int	index = 0;
 
-	while (Materia[index])
+	while (index < 4 && Materia[index])
 		index++;
-	if (index > 3)
+	if (index == 4)
 	{
 		std::cerr << "Can't learn anymore!" << std::endl;
 		return ;
@@ -43,7 +43,7 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (Materia[i]->getType() == type)
+		if (Materia[i] && Materia[i]->getType() == type)
 			return (Materia[i]);
 	}
 	std::cerr << "Wrong parameter type!" << std::endl;

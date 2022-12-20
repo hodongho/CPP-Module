@@ -22,7 +22,11 @@ Character& Character::operator=(Character& copy)
 	{
 		name = copy.getName();
 		for (int i = 0; i < 4; i++)
-			Materia[i] = copy.Materia[i];
+		{
+			if (Materia[i])
+				delete Materia[i];
+			Materia[i] = copy.Materia[i]->clone();
+		}
 	}
 	return (*this);
 }
@@ -31,7 +35,8 @@ Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		delete Materia[i];
+		if (Materia[i])
+			delete Materia[i];
 	}
 }
 
@@ -66,7 +71,7 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (idx < 0 || idx > 3)
+	if (idx < 0 || idx > 3 || !Materia[idx])
 	{
 		std::cerr << "Parameter index is wrong!" << std::endl;
 		return ;

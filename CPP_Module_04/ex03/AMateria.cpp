@@ -17,8 +17,7 @@ AMateria::AMateria(std::string const& type)
 
 AMateria& AMateria::operator=(AMateria& copy)
 {
-	if (this != &copy)
-		type = copy.getType();
+	(void)copy;
 	return (*this);
 }
 
@@ -33,12 +32,5 @@ std::string const& AMateria::getType() const
 
 void	AMateria::use(ICharacter& target)
 {
-	if (type == "ice")
-	{
-		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-	}
-	else if (type == "cure")
-	{
-		std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
-	}
+		std::cout << "* " << target.getName() << " *" << std::endl;
 }
