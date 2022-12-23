@@ -45,8 +45,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 		std::cerr << "Can't learn anymore!" << std::endl;
 		return ;
 	}
-	Materia[index] = m->clone();
-	std::cout << m << " " << Materia[index] << std::endl;
+	Materia[index] = m;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const & type)

@@ -39,15 +39,15 @@ int main() {
 		src->learnMateria(new Ice());
 		src->learnMateria(new Ice());
 
-		ICharacter* me = new Character("Player1");
-		AMateria* tmp;
+		ICharacter* me = new Character("me");
+		AMateria* floor[3];
 
-		tmp = src->createMateria("ice");
-		me->equip(tmp);
-		tmp = src->createMateria("cure");
-		me->equip(tmp);
-		tmp = src->createMateria("cure");
-		me->equip(tmp);
+		floor[0] = src->createMateria("ice");
+		me->equip(floor[0]);
+		floor[1] = src->createMateria("cure");
+		me->equip(floor[1]);
+		floor[2] = src->createMateria("cure");
+		me->equip(floor[2]);
 
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -59,24 +59,15 @@ int main() {
 		me->unequip(1);
 		me->unequip(2);
 
-		Ice* a = new Ice();
-		std::cout << a << std::endl;
-		a = 0;
-		std::cout << a << std::endl;
-
-		int *b = (int*)malloc(sizeof(int));
-		std::cout << b << std::endl;
-		b = 0;
-		std::cout << b << std::endl;
-
-		int* c = new int();
-		std::cout << c << std::endl;
-		c = 0;
-		std::cout << c << std::endl;
+		me->use(0, *bob);
+		me->use(1, *bob);
+		me->use(2, *bob);
 
 		delete bob;
 		delete me;
 		delete src;
+		for (int i = 0; i < 3; i++)
+			delete floor[i];
 
 		std::cout << std::endl;
 		system("leaks -quiet a.out");
