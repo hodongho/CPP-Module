@@ -2,14 +2,17 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include "Form.hpp"
 
 # define HIGHEST_G 1
 # define LOWEST_G 150
 
+class Form;
+
 class Bureaucrat {
 	private:
 		const std::string	name;
-	 int		grade;
+		int					grade;
 
 	public:
 		Bureaucrat();
@@ -24,6 +27,7 @@ class Bureaucrat {
 		const int&			getGrade() const;
 		void				increaseGrade();
 		void				decreaseGrade();
+		void				signForm(Form& f);
 
 		class GradeTooHighException : public std::exception {
 			public:

@@ -3,9 +3,9 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	= main.cpp
+SRCS	= main.cpp Bureaucrat.cpp Form.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= main.hpp
+HEADERS	= Bureaucrat.hpp From.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -39,5 +39,7 @@ fclean :
 re :
 	make fclean
 	make all
+
+$(OBJG)	: $(HEADERS)
 
 .PHONY : all bonus clean fclean re
