@@ -1,20 +1,20 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form()
+AForm::AForm()
 	:name(""), sign(0), signRequest(150), execRequest(150)
 {
 }
 
-Form::Form(std::string name, int signRequest, int execRequest)
+AForm::AForm(std::string name, int signRequest, int execRequest)
 	:name(name), sign(0), signRequest(signRequest), execRequest(execRequest)
 {
 	if (signRequest < HIGHEST_G || execRequest < HIGHEST_G)
 		throw(Bureaucrat::GradeTooHighException());
 	else if (signRequest > LOWEST_G || execRequest > LOWEST_G)
-		throw(Bureaucrat::GradeTooHighException());
+		throw(Bureaucrat::GradeTooLowException());
 }
 
-Form::Form(Form& copy)
+AForm::AForm(AForm& copy)
 	:	name(copy.getName()),
 		sign(copy.getSign()),
 		signRequest(copy.getSignRequest()),
@@ -22,7 +22,7 @@ Form::Form(Form& copy)
 {
 }
 
-Form& Form::operator=(Form& copy)
+AForm& AForm::operator=(AForm& copy)
 {
 	if (this != &copy)
 	{
@@ -31,56 +31,56 @@ Form& Form::operator=(Form& copy)
 	return (*this);
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 }
 
-const std::string&	Form::getName() const
+const std::string&	AForm::getName() const
 {
 	return (name);
 }
 
-bool	Form::getSign() const
+bool	AForm::getSign() const
 {
 	return (sign);
 }
 
-const int&	Form::getSignRequest() const
+const int&	AForm::getSignRequest() const
 {
 	return (signRequest);
 }
 
-const int&	Form::getExecRequest() const
+const int&	AForm::getExecRequest() const
 {
 	return (execRequest);
 }
 
-void	Form::beSigned(Bureaucrat& b)
+void	AForm::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() > getSignRequest())
 		throw (GradeTooLowException());
 	if (sign == true)
-		std::cout << "This Form is already signed" << std::endl;
+		std::cout << "This AForm is already signed" << std::endl;
 	else
 		sign = true;
 }
 
-const char*	Form::GradeTooHighException::what() const throw()
+const char*	AForm::GradeTooHighException::what() const throw()
 {
 	return ("Your grade too high");
 }
 
-const char*	Form::GradeTooLowException::what() const throw()
+const char*	AForm::GradeTooLowException::what() const throw()
 {
 	return ("Your grade too low");
 }
 
-std::ostream&	operator<<(std::ostream& out, const Form& Form)
+std::ostream&	operator<<(std::ostream& out, const AForm& AForm)
 {
-	out << Form.getName()
+	out << AForm.getName()
 		<< "'s informations" << std::endl
-		<< " Sign : " << Form.getSign()
-		<< " Sign Request : " << Form.getSignRequest()
-		<< " Execute Request : " << Form.getExecRequest() << std::endl;
+		<< " Sign : " << AForm.getSign()
+		<< " Sign Request : " << AForm.getSignRequest()
+		<< " Execute Request : " << AForm.getExecRequest() << std::endl;
 	return (out);
 }
