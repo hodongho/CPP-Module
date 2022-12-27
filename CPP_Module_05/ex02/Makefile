@@ -3,9 +3,9 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRCS	= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= Bureaucrat.hpp AFrom.hpp ShrubberyCreationForm.hpp
+HEADERS	= Bureaucrat.hpp AFrom.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
