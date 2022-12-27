@@ -1,17 +1,17 @@
 #include "Form.hpp"
 
 Form::Form()
-	:name(""), sign(0), signRequest(150), execRequest(150)
+	:name(""), sign(false), signRequest(150), execRequest(150)
 {
 }
 
 Form::Form(std::string name, int signRequest, int execRequest)
-	:name(name), sign(0), signRequest(signRequest), execRequest(execRequest)
+	:name(name), sign(false), signRequest(signRequest), execRequest(execRequest)
 {
 	if (signRequest < HIGHEST_G || execRequest < HIGHEST_G)
 		throw(Bureaucrat::GradeTooHighException());
 	else if (signRequest > LOWEST_G || execRequest > LOWEST_G)
-		throw(Bureaucrat::GradeTooHighException());
+		throw(Bureaucrat::GradeTooLowException());
 }
 
 Form::Form(Form& copy)
@@ -60,7 +60,7 @@ void	Form::beSigned(Bureaucrat& b)
 	if (b.getGrade() > getSignRequest())
 		throw (GradeTooLowException());
 	if (sign == true)
-		std::cout << "This Form is already signed" << std::endl;
+		throw (SignException());
 	else
 		sign = true;
 }
@@ -73,6 +73,11 @@ const char*	Form::GradeTooHighException::what() const throw()
 const char*	Form::GradeTooLowException::what() const throw()
 {
 	return ("Your grade too low");
+}
+
+const char*	Form::SignException::what() const throw()
+{
+	return("This form is already signed");
 }
 
 std::ostream&	operator<<(std::ostream& out, const Form& Form)

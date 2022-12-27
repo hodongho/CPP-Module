@@ -32,8 +32,8 @@ const std::string& PresidentialPardonForm::getTarget() const
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if (getSign() == false)
-		throw AForm::SignException();
+		throw (notSignException());
 	if (executor.getGrade() > getExecRequest())
-		throw AForm::GradeTooLowException();
+		throw (GradeTooLowException());
 	std::cout << getTarget() << "has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

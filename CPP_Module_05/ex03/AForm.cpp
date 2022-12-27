@@ -1,12 +1,12 @@
 #include "AForm.hpp"
 
 AForm::AForm()
-	:name(""), sign(0), signRequest(150), execRequest(150)
+	:name(""), sign(false), signRequest(150), execRequest(150)
 {
 }
 
 AForm::AForm(std::string name, int signRequest, int execRequest)
-	:name(name), sign(0), signRequest(signRequest), execRequest(execRequest)
+	:name(name), sign(false), signRequest(signRequest), execRequest(execRequest)
 {
 	if (signRequest < HIGHEST_G || execRequest < HIGHEST_G)
 		throw(Bureaucrat::GradeTooHighException());
@@ -76,6 +76,11 @@ const char*	AForm::GradeTooLowException::what() const throw()
 }
 
 const char*	AForm::SignException::what() const throw()
+{
+	return("This form is already signed");
+}
+
+const char*	AForm::notSignException::what() const throw()
 {
 	return("This form is not signed");
 }

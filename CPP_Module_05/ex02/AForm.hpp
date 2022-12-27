@@ -40,6 +40,10 @@ class AForm {
 		class SignException : public std::exception {
 			const char* what() const throw();
 		};
+
+		class notSignException : public std::exception {
+			const char* what() const throw();
+		};
 };
 
 std::ostream&	operator<<(std::ostream& out, const AForm& AForm);

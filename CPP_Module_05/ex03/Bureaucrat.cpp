@@ -44,16 +44,16 @@ const int& Bureaucrat::getGrade() const
 
 void	Bureaucrat::increaseGrade()
 {
-	grade--;
-	if (grade < HIGHEST_G)
+	if (grade <= HIGHEST_G)
 		throw GradeTooHighException();
+	grade--;
 }
 
 void	Bureaucrat::decreaseGrade()
 {
-	grade++;
-	if (grade > LOWEST_G)
+	if (grade >= LOWEST_G)
 		throw GradeTooLowException();
+	grade++;
 }
 
 void	Bureaucrat::signForm(AForm& form)
@@ -68,7 +68,7 @@ void	Bureaucrat::signForm(AForm& form)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout	<< getName()
+		std::cerr	<< getName()
 					<< " couldn't sign "
 					<< form.getName()
 					<< " because "
@@ -89,7 +89,7 @@ void	Bureaucrat::executeForm(AForm const & form)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout	<< getName()
+		std::cerr	<< getName()
 					<< " couldn't execute "
 					<< form.getName()
 					<< " because "

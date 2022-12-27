@@ -44,16 +44,16 @@ const int& Bureaucrat::getGrade() const
 
 void	Bureaucrat::increaseGrade()
 {
-	grade--;
-	if (grade < HIGHEST_G)
+	if (grade <= HIGHEST_G)
 		throw GradeTooHighException();
+	grade--;
 }
 
 void	Bureaucrat::decreaseGrade()
 {
-	grade++;
-	if (grade > LOWEST_G)
+	if (grade >= LOWEST_G)
 		throw GradeTooLowException();
+	grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

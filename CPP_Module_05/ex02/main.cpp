@@ -6,6 +6,8 @@
 
 int main()
 {
+	std::cout << std::endl << "--------------------Start!--------------------" << std::endl << std::endl;
+
 	ShrubberyCreationForm	HomeA("A");
 	ShrubberyCreationForm	HomeB("B");
 	ShrubberyCreationForm	HomeC("C");
@@ -44,7 +46,7 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -62,7 +64,7 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -80,7 +82,7 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 	return (0);

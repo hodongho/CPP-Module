@@ -33,9 +33,9 @@ const std::string& ShrubberyCreationForm::getTarget() const
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (getSign() == false)
-		throw AForm::SignException();
+		throw (notSignException());
 	if (executor.getGrade() > getExecRequest())
-		throw AForm::GradeTooLowException();
+		throw (GradeTooLowException());
 
 	std::string filename = getTarget();
 
@@ -43,16 +43,16 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 
 	std::ofstream	file(filename.c_str());
 
-	file	<< "           *" << std::endl
-			<< "         _/ \\_" << std::endl
-			<< "        \\     /" << std::endl
-			<< "        /_' '_\\" << std::endl
-			<< "         /'+ \\" << std::endl
-			<< "        / o o \\" << std::endl
-			<< "       /  -' *-\\" << std::endl
-			<< "      /.  oo+...\\" << std::endl
-			<< "     /o- @ o @o' \\" << std::endl
-			<< "    *-------------*" << std::endl
-			<< "       [_______]" << std::endl
-			<< "        \\_____/" << std::endl;
+	file	<< "       *" << std::endl
+			<< "     _/ \\_" << std::endl
+			<< "    \\     /" << std::endl
+			<< "    /_' '_\\" << std::endl
+			<< "     /'+ \\" << std::endl
+			<< "    / o o \\" << std::endl
+			<< "   /  -' *-\\" << std::endl
+			<< "  /.  oo+...\\" << std::endl
+			<< " /o- @ o @o' \\" << std::endl
+			<< "*-------------*" << std::endl
+			<< "   [_______]" << std::endl
+			<< "    \\_____/" << std::endl;
 }

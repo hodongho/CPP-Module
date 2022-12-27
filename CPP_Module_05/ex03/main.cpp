@@ -7,6 +7,8 @@
 
 int main()
 {
+	std::cout << std::endl << "--------------------Start!--------------------" << std::endl << std::endl;
+
 	Intern	someRandomIntern;
 	AForm*	FormCase[5];
 
@@ -16,7 +18,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try
@@ -25,7 +27,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try
@@ -34,7 +36,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try
@@ -43,7 +45,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try
@@ -52,7 +54,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -95,7 +97,7 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -113,7 +115,7 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -131,7 +133,7 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 	for (int i = 0; i < 5; i++)

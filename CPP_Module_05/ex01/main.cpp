@@ -3,14 +3,16 @@
 
 int main()
 {
+	std::cout << std::endl << "--------------------Start!--------------------" << std::endl << std::endl;
+
 	{
 		try
 		{
-			Form	H("H", -1, -1);
+			Form	H("H", 0, 0);
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -23,7 +25,7 @@ int main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -47,7 +49,18 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
+		}
+
+		std::cout << std::endl;
+
+		try
+		{
+			A.signForm(Bottom);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -71,7 +84,18 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
+		}
+
+		std::cout << std::endl;
+
+		try
+		{
+			B.signForm(Bottom);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -95,7 +119,18 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
+		}
+
+		std::cout << std::endl;
+
+		try
+		{
+			C.signForm(Bottom);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
 		}
 	}
 	return (0);

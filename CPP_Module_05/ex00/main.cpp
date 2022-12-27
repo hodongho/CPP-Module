@@ -2,14 +2,16 @@
 
 int main()
 {
+	std::cout << std::endl << "--------------------Start!--------------------" << std::endl << std::endl;
+
 	{
 		try
 		{
-			Bureaucrat H("H", -1);
+			Bureaucrat H("H", 0);
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -22,7 +24,7 @@ int main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
@@ -38,8 +40,11 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
+
+		A.decreaseGrade();
+		std::cout << A << std::endl;
 	}
 
 	std::cout << std::endl << "----------------------------------------------" << std::endl << std::endl;
@@ -54,8 +59,11 @@ int main()
 		}
 		catch (std::exception& e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
+
+		B.increaseGrade();
+		std::cout << B << std::endl;
 	}
 	return (0);
 }
