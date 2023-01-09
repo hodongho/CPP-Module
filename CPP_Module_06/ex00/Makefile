@@ -3,9 +3,9 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= convert
 
-SRCS	= main.cpp
+SRCS	= main.cpp Converter.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	=
+HEADERS	= main.hpp Converter.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
