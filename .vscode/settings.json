@@ -63,7 +63,8 @@
 		"clocale": "cpp",
 		"__functional_03": "cpp",
 		"filesystem": "cpp",
-		"cmath": "cpp"
+		"cmath": "cpp",
+		"*.tpp": "cpp"
 	},
 	"cSpell.words": [
 		"WRONGANIMAL"

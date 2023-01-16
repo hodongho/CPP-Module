@@ -5,7 +5,7 @@ NAME	= a.out
 
 SRCS	= main.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= main.hpp
+HEADERS	= Array.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -29,6 +29,8 @@ debug:
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+$(OBJG)	: $(HEADERS)
+
 clean :
 	$(RM) $(OBJS)
 
@@ -40,6 +42,5 @@ re :
 	make fclean
 	make all
 
-$(OBJG)	: $(HEADERS)
 
 .PHONY : all bonus clean fclean re
