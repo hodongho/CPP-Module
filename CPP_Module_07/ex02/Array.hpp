@@ -51,6 +51,13 @@ class Array {
 			return (array[i]);
 		}
 
+		const T& operator[](int i) const
+		{
+			if (i < 0 || static_cast<unsigned int>(i) >= _size)
+				throw (indexException());
+			return (array[i]);
+		}
+
 		virtual ~Array()
 		{
 			if (array != 0)

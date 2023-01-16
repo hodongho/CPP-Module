@@ -10,14 +10,14 @@ class Test {
 		~Test() {};
 };
 
-std::ostream& operator<<(std::ostream& out, Test& t)
+std::ostream& operator<<(std::ostream& out, const Test& t)
 {
 	out << t.getI();
 	return (out);
 }
 
 template <typename T>
-void	print(T const& print)
+void	print(const T& print)
 {
 	std::cout << print << std::endl;
 }
