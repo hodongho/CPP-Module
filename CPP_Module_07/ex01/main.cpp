@@ -17,7 +17,7 @@ std::ostream& operator<<(std::ostream& out, const Test& t)
 }
 
 template <typename T>
-void	print(const T& print)
+void	print(T& print)
 {
 	std::cout << print << std::endl;
 }
