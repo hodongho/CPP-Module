@@ -3,9 +3,9 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 NAME	= a.out
 
-SRCS	= main.cpp
+SRCS	= main.cpp Span.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= main.hpp
+HEADERS	= Span.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
@@ -40,6 +40,6 @@ re :
 	make fclean
 	make all
 
-$(OBJG)	: $(HEADERS)
+$(OBJS)	: $(HEADERS)
 
 .PHONY : all bonus clean fclean re

@@ -65,7 +65,12 @@
 		"filesystem": "cpp",
 		"cmath": "cpp",
 		"*.tpp": "cpp",
-		"__availability": "cpp"
+		"__availability": "cpp",
+		"list": "cpp",
+		"set": "cpp",
+		"__node_handle": "cpp",
+		"__tree": "cpp",
+		"optional": "cpp"
 	},
 	"cSpell.words": [
 		"WRONGANIMAL"

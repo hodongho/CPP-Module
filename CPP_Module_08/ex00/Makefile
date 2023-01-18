@@ -5,6 +5,7 @@ NAME	= a.out
 
 SRCS	= main.cpp
 OBJS	= $(SRCS:.cpp=.o)
+
 HEADERS	= easyfind.hpp
 
 ifdef DFLAG
@@ -40,6 +41,6 @@ re :
 	make fclean
 	make all
 
-$(OBJG)	: $(HEADERS)
+$(OBJS)	: $(HEADERS)
 
 .PHONY : all bonus clean fclean re

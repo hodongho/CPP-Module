@@ -40,6 +40,6 @@ re :
 	make fclean
 	make all
 
-$(OBJG)	: $(HEADERS)
+$(OBJS)	: $(HEADERS)
 
 .PHONY : all bonus clean fclean re
