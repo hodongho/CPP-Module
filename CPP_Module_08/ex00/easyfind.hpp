@@ -2,8 +2,6 @@
 # define EASYFIND_HPP
 
 # include <algorithm>
-# include <vector>
-# include <deque>
 
 class notFoundException : public std::exception {
 	const char*	what() const throw()

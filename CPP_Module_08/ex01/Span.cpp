@@ -10,13 +10,13 @@ Span::Span(unsigned int n)
 {
 }
 
-Span::Span(Span& copy)
+Span::Span(const Span& copy)
 	:maxSize(0), shortest(0), longest(0)
 {
 	*this = copy;
 }
 
-Span&	Span::operator=(Span& copy)
+Span&	Span::operator=(const Span& copy)
 {
 	if(this != &copy)
 	{
@@ -91,14 +91,14 @@ void	Span::setLongest(std::multiset<int>::iterator now)
 
 unsigned int	Span::shortestSpan()
 {
-	if (store.size() < 2 || getShortest() == 0)
+	if (store.size() < 2)
 		throw(spanException());
 	return (getShortest());
 }
 
 unsigned int	Span::longestSpan()
 {
-	if (store.size() < 2 || getLongest() == 0)
+	if (store.size() < 2)
 		throw(spanException());
 	return (getLongest());
 }
@@ -125,7 +125,7 @@ const unsigned int& Span::getLongest() const
 
 const char* Span::sizeException::what() const throw()
 {
-	return ("Can't add no more number!");
+	return ("Can't add more number!");
 }
 
 const char* Span::spanException::what() const throw()

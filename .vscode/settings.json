@@ -71,7 +71,8 @@
 		"__node_handle": "cpp",
 		"__tree": "cpp",
 		"optional": "cpp",
-		"__cxx_version": "cpp"
+		"__cxx_version": "cpp",
+		"version": "cpp"
 	},
 	"cSpell.words": [
 		"WRONGANIMAL"

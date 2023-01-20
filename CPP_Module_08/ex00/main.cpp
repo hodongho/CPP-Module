@@ -1,8 +1,12 @@
 #include "easyfind.hpp"
 #include <iostream>
+# include <vector>
+# include <deque>
 
 int main()
 {
+	std::cout << "\n-----Vector Test-----\n" << std::endl;
+
 	std::vector<int> vec;
 
 	for (int i = 0; i < 10; i++)
@@ -23,6 +27,8 @@ int main()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	std::cout << "\n-----Deque Test-----\n" << std::endl;
 
 	std::deque<int> deq;
 	for (int i = 0; i < 10; ++i)

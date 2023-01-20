@@ -13,13 +13,19 @@ class Span {
 	public:
 		Span();
 		Span(unsigned int n);
-		Span(Span& copy);
+		Span(const Span& copy);
 
-		Span&	operator=(Span& copy);
+		Span&	operator=(const Span& copy);
 
 		~Span();
 
 		void			addNumber(int i);
+		template <typename T>
+		void			addNumber(T begin, T end)
+		{
+			for (T i = begin; i != end; i++)
+				addNumber(*i);
+		}
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 
