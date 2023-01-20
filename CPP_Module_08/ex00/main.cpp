@@ -1,7 +1,7 @@
 #include "easyfind.hpp"
 #include <iostream>
-# include <vector>
-# include <deque>
+#include <vector>
+#include <deque>
 
 int main()
 {

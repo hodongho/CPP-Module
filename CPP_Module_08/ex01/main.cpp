@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Span.hpp"
+#include <iostream>
 #include <vector>
 
 int main()

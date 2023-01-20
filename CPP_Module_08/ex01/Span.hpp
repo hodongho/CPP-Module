@@ -2,6 +2,7 @@
 # define SPAN_HPP
 
 # include <set>
+# include <exception>
 
 class Span {
 	private:

@@ -69,7 +69,6 @@ int main()
 			std::cout << *it << std::endl;
 			++it;
 		}
-		std::list<int> s(lst);
 	}
 	return 0;
 }

@@ -2,6 +2,7 @@
 # define EASYFIND_HPP
 
 # include <algorithm>
+# include <exception>
 
 class notFoundException : public std::exception {
 	const char*	what() const throw()
