@@ -1,15 +1,14 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-# include <set>
+# include <vector>
+# include <algorithm>
 # include <exception>
 
 class Span {
 	private:
-		std::multiset<int>	store;
+		std::vector<int>	store;
 		unsigned int		maxSize;
-		unsigned int		shortest;
-		unsigned int		longest;
 
 	public:
 		Span();
@@ -30,13 +29,8 @@ class Span {
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 
-		const std::multiset<int>&	getStore() const;
-		const unsigned int&			getMaxSize() const;
-		const unsigned int&			getShortest() const;
-		const unsigned int&			getLongest() const;
-
-		void	setShortest(std::multiset<int>::iterator now);
-		void	setLongest(std::multiset<int>::iterator now);
+		std::vector<int>	getStore() const;
+		unsigned int		getMaxSize() const;
 
 		class sizeException : public std::exception {
 			const char* what() const throw();

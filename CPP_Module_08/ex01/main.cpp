@@ -20,7 +20,6 @@ int main()
 
 		sp.addNumber(1);
 		sp.addNumber(4);
-		sp.addNumber(17);
 		sp.addNumber(31);
 		sp.addNumber(12);
 
@@ -36,13 +35,9 @@ int main()
 
 		sp.addNumber(vec.begin(), vec.end());
 
-		std::multiset<int>::iterator	iter;
-		iter = sp.getStore().begin();
-
-		while(iter != sp.getStore().end())
+		for(size_t i = 0; i != sp.getStore().size(); i++)
 		{
-			std::cout << *iter << std::endl;
-			iter++;
+			std::cout << sp.getStore()[i] << std::endl;
 		}
 	}
 	std::cout << "\n-----Exception Test-----\n" << std::endl;
