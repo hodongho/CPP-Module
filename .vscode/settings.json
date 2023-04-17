@@ -73,7 +73,8 @@
 		"optional": "cpp",
 		"__cxx_version": "cpp",
 		"version": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"sstream": "cpp"
 	},
 	"cSpell.words": [
 		"WRONGANIMAL"
