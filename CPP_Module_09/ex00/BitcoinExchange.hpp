@@ -4,24 +4,26 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include <map>
-
+# include <vector>
 
 class BitcoinExchange
 {
 private:
-	std::fstream						DB;
-	std::fstream						InputDB;
-	std::map<std::string, float>		DBMap;
+	std::fstream					DB;
+	std::fstream					input_DB;
+	std::vector<std::string>		DB_vec;
 
 public:
 	BitcoinExchange();
-	BitcoinExchange(BitcoinExchange& copy);
+	BitcoinExchange(const BitcoinExchange& copy);
 
-	BitcoinExchange&	operator=(BitcoinExchange& copy);
+	BitcoinExchange&	operator=(const BitcoinExchange& copy);
 
 	~BitcoinExchange();
 
+	void	parseInput(const char* input_file);
+	void	checkDate(std::string date);
+	void	checkPrice(std::string price_str);
 };
 
 void printError(std::string msg);
