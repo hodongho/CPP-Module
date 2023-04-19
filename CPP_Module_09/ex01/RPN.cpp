@@ -63,6 +63,8 @@ void	RPN::calculate()
 		else
 			this->operand.clear();
 	}
+	if (this->main_stack.size() != 1)
+		printError();
 	this->print();
 }
 
@@ -106,13 +108,14 @@ Element	RPN::checkElement(const char& element)
 
 void	RPN::pushNumber(const char element)
 {
-	if (this->main_stack.size() > 2)
-		printError();
 	this->main_stack.push(element - '0');
 }
 
 void	RPN::calculateStack(const char& element)
 {
+	if (this->main_stack.size() < 1)
+		printError();
+
 	int	first_number, second_number, result;
 
 	second_number = this->main_stack.top();
