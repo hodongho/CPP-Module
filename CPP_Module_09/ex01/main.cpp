@@ -3,7 +3,7 @@
 int main(int argc, char *argv[])
 {
 	if (argc != 2)
-		printError("wrong argument!");
+		printError();
 
 	RPN	rpn(argv[1]);
 

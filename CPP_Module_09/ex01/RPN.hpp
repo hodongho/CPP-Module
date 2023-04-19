@@ -45,6 +45,6 @@ class RPN {
 		void	calculate();
 };
 
-void	printError(std::string msg);
+void	printError();
 
 #endif

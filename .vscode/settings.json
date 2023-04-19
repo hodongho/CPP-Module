@@ -74,7 +74,11 @@
 		"__cxx_version": "cpp",
 		"version": "cpp",
 		"map": "cpp",
-		"sstream": "cpp"
+		"sstream": "cpp",
+		"__hash_table": "cpp",
+		"__verbose_abort": "cpp",
+		"array": "cpp",
+		"unordered_map": "cpp"
 	},
 	"cSpell.words": [
 		"WRONGANIMAL"

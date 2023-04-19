@@ -54,7 +54,7 @@ void	RPN::calculate()
 			break;
 
 		default:
-			printError("using wrong argument!");
+			printError();
 			break;
 		}
 		space_pos = this->operand.find(' ');
@@ -62,15 +62,13 @@ void	RPN::calculate()
 			this->setOperand(this->operand.substr(space_pos + 1));
 		else
 			this->operand.clear();
-
-		std::cout << BLU << operand << std::endl;
 	}
 	this->print();
 }
 
 void	RPN::print()
 {
-	std::cout << this->main_stack.top() << std::endl;
+	std::cout << GRN << this->main_stack.top() << std::endl;
 }
 
 char	RPN::getElement()
@@ -83,7 +81,7 @@ char	RPN::getElement()
 	else
 		std::getline(stream_operand, sub_operand);
 	if (sub_operand.size() != 1)
-		printError("number or operator was wrong");
+		printError();
 	return (sub_operand[0]);
 }
 
@@ -109,15 +107,12 @@ Element	RPN::checkElement(const char& element)
 void	RPN::pushNumber(const char element)
 {
 	if (this->main_stack.size() > 2)
-		printError("using wrong argument!");
+		printError();
 	this->main_stack.push(element - '0');
 }
 
 void	RPN::calculateStack(const char& element)
 {
-	if (main_stack.size() != 2)
-		printError("using wrong argument!");
-
 	int	first_number, second_number, result;
 
 	second_number = this->main_stack.top();
@@ -137,8 +132,8 @@ void	RPN::calculateStack(const char& element)
 	this->main_stack.push(result);
 }
 
-void	printError(std::string msg)
+void	printError()
 {
-	std::cerr << RED << "Error: " << msg << std::endl;
+	std::cerr << RED << "Error" << std::endl;
 	exit(1);
 }
