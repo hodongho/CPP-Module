@@ -4,14 +4,26 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include <vector>
+# include <map>
+
+# define RED "\e[0;31m"
+# define GRN "\e[0;32m"
+# define BRW "\e[0;33m"
+# define BLU "\e[0;34m"
+# define PUP "\e[0;35m"
+# define CYN "\e[0;36m"
+# define WHI "\e[0;37m"
 
 class BitcoinExchange
 {
 private:
-	std::fstream					DB;
-	std::fstream					input_DB;
-	std::vector<std::string>		DB_vec;
+	std::map<std::string, float>	basic_DB_map;
+
+	void	parseInput(const char* input_file_name);
+	bool	validateInput(const std::string& line, std::string& date, std::string& value);
+	bool	divideByDelimiter(const std::string& line, std::string& date, std::string& value);
+	bool	validateDate(const std::string& date);
+	bool	validateValue(const std::string& value);
 
 public:
 	BitcoinExchange();
@@ -21,11 +33,10 @@ public:
 
 	~BitcoinExchange();
 
-	void	parseInput(const char* input_file);
-	void	checkDate(std::string date);
-	void	checkPrice(std::string price_str);
+	void	run(const char* input_file_name);
 };
 
 void printError(std::string msg);
+bool printErrorMessage(std::string msg);
 
 #endif

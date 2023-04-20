@@ -2,8 +2,14 @@
 
 int main (int argc, char *argv[])
 {
+	std::cout << WHI;
+
 	if (argc != 2)
 		printError("could not open file.");
-	(void)argv;
+
+	BitcoinExchange	BE;
+
+	BE.run(argv[1]);
+
 	return (0);
 }
