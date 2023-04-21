@@ -137,6 +137,6 @@ void	RPN::calculateStack(const char& element)
 
 void	printError()
 {
-	std::cerr << RED << "Error" << std::endl;
+	std::cout << RED << "Error" << std::endl;
 	exit(1);
 }

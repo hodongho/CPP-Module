@@ -1,11 +1,11 @@
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
-NAME	= a.out
+NAME	= PmergeMe
 
-SRCS	= main.cpp
+SRCS	= main.cpp PmergeMe.cpp
 OBJS	= $(SRCS:.cpp=.o)
-HEADERS	= main.hpp
+HEADERS	= PmergeMe.hpp
 
 ifdef DFLAG
 	CXXFLAGS += -g2 -fsanitize=address
