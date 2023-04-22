@@ -1,6 +1,6 @@
 #include "RPN.hpp"
 
-RPN::RPN()
+RPN::RPN(void)
 :operand("")
 {
 }
@@ -26,7 +26,7 @@ RPN&	RPN::operator=(const RPN& copy)
 	return (*this);
 }
 
-RPN::~RPN()
+RPN::~RPN(void)
 {
 }
 
@@ -35,7 +35,7 @@ void	RPN::setOperand(std::string _operand)
 	this->operand = _operand;
 }
 
-void	RPN::calculate()
+void	RPN::calculate(void)
 {
 	char	element;
 	size_t	space_pos;
@@ -68,12 +68,12 @@ void	RPN::calculate()
 	this->print();
 }
 
-void	RPN::print()
+void	RPN::print(void)
 {
 	std::cout << GRN << this->main_stack.top() << std::endl;
 }
 
-char	RPN::getElement()
+char	RPN::getElement(void)
 {
 	std::istringstream	stream_operand(this->operand);
 	std::string			sub_operand;
@@ -113,7 +113,7 @@ void	RPN::pushNumber(const char element)
 
 void	RPN::calculateStack(const char& element)
 {
-	if (this->main_stack.size() < 1)
+	if (this->main_stack.size() < 2)
 		printError();
 
 	int	first_number, second_number, result;
@@ -135,7 +135,7 @@ void	RPN::calculateStack(const char& element)
 	this->main_stack.push(result);
 }
 
-void	printError()
+void	printError(void)
 {
 	std::cout << RED << "Error" << std::endl;
 	exit(1);

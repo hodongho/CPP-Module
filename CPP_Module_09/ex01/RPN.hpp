@@ -27,24 +27,24 @@ class RPN {
 
 		void	setOperand(std::string _operand);
 
-		void	print();
-		char	getElement();
+		void	print(void);
+		char	getElement(void);
 		Element	checkElement(const char& element);
 		void	pushNumber(const char element);
 		void	calculateStack(const char& element);
 
 	public:
-		RPN();
+		RPN(void);
 		RPN(const RPN& copy);
 		RPN(std::string _operand);
 
 		RPN&	operator=(const RPN& copy);
 
-		~RPN();
+		~RPN(void);
 
-		void	calculate();
+		void	calculate(void);
 };
 
-void	printError();
+void	printError(void);
 
 #endif
