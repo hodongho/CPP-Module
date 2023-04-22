@@ -1,6 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
+BitcoinExchange::BitcoinExchange(void)
 {
 	std::ifstream		basic_DB("data.csv");
 	std::string			date;
@@ -20,7 +20,6 @@ BitcoinExchange::BitcoinExchange()
 			break ;
 
 		this->basic_DB_map[date] = atof(value.c_str());
-		// std::cout << BLU << date << " " << PUP << this->basic_DB_map[date] << WHI << std::endl;
 	}
 }
 
@@ -38,16 +37,11 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
 	return (*this);
 }
 
-BitcoinExchange::~BitcoinExchange()
+BitcoinExchange::~BitcoinExchange(void)
 {
 }
 
 void	BitcoinExchange::run(const char* input_file_name)
-{
-	this->parseInput(input_file_name);
-}
-
-void	BitcoinExchange::parseInput(const char* input_file_name)
 {
 	std::ifstream		input_DB(input_file_name);
 	std::string			date;
@@ -68,7 +62,7 @@ void	BitcoinExchange::parseInput(const char* input_file_name)
 		if (this->validateInput(buf, date, value) == false)
 			continue ;
 
-		// std::cout << BLU << date << " " << PUP << atof(value.c_str()) << WHI << std::endl;
+		exchangeData(date, value);
 	}
 }
 
@@ -130,9 +124,6 @@ bool	BitcoinExchange::validateDate(const std::string& date)
 		else if (day > 28)
 				return (printErrorMessage("bad date => " + date));
 	}
-
-	// std::cout << GRN << date + " => " << WHI;
-
 	return (true);
 }
 
@@ -160,12 +151,25 @@ bool	BitcoinExchange::validateValue(const std::string& value)
 		if (!isdigit(value[index]))
 			return (printErrorMessage("bad value => " + value));
 	}
-
-
 	return (true);
 }
 
+void	BitcoinExchange::exchangeData(std::string& date, std::string& value)
+{
+	std::map<std::string, float>::iterator	iter;
 
+	iter = this->basic_DB_map.lower_bound(date);
+	if (date == iter->first)
+	{
+		std::cout <<	BLU << date + " => " + value + " = " <<
+						iter->second * atof(value.c_str()) << std::endl;
+	}
+	else
+	{
+		std::cout <<	BLU << date + " => " + value + " = " <<
+						(--iter)->second * atof(value.c_str()) << std::endl;
+	}
+}
 
 void	printError(std::string msg)
 {

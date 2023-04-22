@@ -19,19 +19,20 @@ class BitcoinExchange
 private:
 	std::map<std::string, float>	basic_DB_map;
 
-	void	parseInput(const char* input_file_name);
 	bool	validateInput(const std::string& line, std::string& date, std::string& value);
 	bool	divideByDelimiter(const std::string& line, std::string& date, std::string& value);
 	bool	validateDate(const std::string& date);
 	bool	validateValue(const std::string& value);
 
+	void	exchangeData(std::string& date, std::string& value);
+
 public:
-	BitcoinExchange();
+	BitcoinExchange(void);
 	BitcoinExchange(const BitcoinExchange& copy);
 
 	BitcoinExchange&	operator=(const BitcoinExchange& copy);
 
-	~BitcoinExchange();
+	~BitcoinExchange(void);
 
 	void	run(const char* input_file_name);
 };
