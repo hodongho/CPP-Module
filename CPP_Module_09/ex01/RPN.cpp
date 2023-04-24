@@ -1,18 +1,18 @@
 #include "RPN.hpp"
 
 RPN::RPN(void)
-:operand("")
+:expression("")
 {
 }
 
 RPN::RPN(const RPN& copy)
-:operand("")
+:expression("")
 {
 	*this = copy;
 }
 
-RPN::RPN(std::string _operand)
-:operand(_operand)
+RPN::RPN(std::string _expression)
+:expression(_expression)
 {
 }
 
@@ -21,7 +21,7 @@ RPN&	RPN::operator=(const RPN& copy)
 	if (this != &copy)
 	{
 		this->main_stack = copy.main_stack;
-		this->operand = copy.operand;
+		this->expression = copy.expression;
 	}
 	return (*this);
 }
@@ -30,21 +30,24 @@ RPN::~RPN(void)
 {
 }
 
-void	RPN::setOperand(std::string _operand)
+void	RPN::setExpression(std::string _expression)
 {
-	this->operand = _operand;
+	this->expression = _expression;
 }
 
 void	RPN::calculate(void)
 {
 	char	element;
-	size_t	space_pos;
 
-	while (this->operand.size() > 0)
+	while (this->expression.size() > 0)
 	{
 		element = this->getElement();
 		switch (this->checkElement(element))
 		{
+		std::cout << this->checkElement(element) << std::endl;
+		case SPACE:
+			break ;
+
 		case NUMBER:
 			this->pushNumber(element);
 			break;
@@ -57,11 +60,7 @@ void	RPN::calculate(void)
 			printError();
 			break;
 		}
-		space_pos = this->operand.find(' ');
-		if (space_pos != std::string::npos)
-			this->setOperand(this->operand.substr(space_pos + 1));
-		else
-			this->operand.clear();
+		this->initExpression();
 	}
 	if (this->main_stack.size() != 1)
 		printError();
@@ -75,16 +74,19 @@ void	RPN::print(void)
 
 char	RPN::getElement(void)
 {
-	std::istringstream	stream_operand(this->operand);
-	std::string			sub_operand;
+	std::istringstream	stream_expression(this->expression);
+	std::string			sub_expression;
 
-	if (this->operand.size() >= 2)
-		std::getline(stream_operand, sub_operand, ' ');
+	if (this->expression[0] == ' ')
+		return (' ');
+
+	if (this->expression.size() >= 2)
+		std::getline(stream_expression, sub_expression, ' ');
 	else
-		std::getline(stream_operand, sub_operand);
-	if (sub_operand.size() != 1)
+		std::getline(stream_expression, sub_expression);
+	if (sub_expression.size() != 1)
 		printError();
-	return (sub_operand[0]);
+	return (sub_expression[0]);
 }
 
 static char	isOperator(const char& element)
@@ -99,7 +101,9 @@ static char	isOperator(const char& element)
 
 Element	RPN::checkElement(const char& element)
 {
-	if (isdigit(element))
+	if (element == ' ')
+		return (SPACE);
+	else if (isdigit(element))
 		return (NUMBER);
 	else if (isOperator(element))
 		return (OPERATOR);
@@ -133,6 +137,23 @@ void	RPN::calculateStack(const char& element)
 		result = first_number * second_number;
 
 	this->main_stack.push(result);
+}
+
+void	RPN::initExpression(void)
+{
+	if (this->expression[0] == ' ')
+	{
+		this->setExpression(this->expression.substr(1));
+		return ;
+	}
+
+	size_t	space_pos;
+
+	space_pos = this->expression.find(' ');
+	if (space_pos != std::string::npos)
+		this->setExpression(this->expression.substr(space_pos + 1));
+	else
+		this->expression.clear();
 }
 
 void	printError(void)

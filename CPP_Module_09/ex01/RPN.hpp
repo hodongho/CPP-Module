@@ -17,26 +17,28 @@
 enum Element {
 	NUMBER,
 	OPERATOR,
+	SPACE,
 	NONE
 };
 
 class RPN {
 	private:
 		std::stack<int>	main_stack;
-		std::string		operand;
+		std::string		expression;
 
-		void	setOperand(std::string _operand);
+		void	setExpression(std::string _expression);
 
 		void	print(void);
 		char	getElement(void);
 		Element	checkElement(const char& element);
 		void	pushNumber(const char element);
 		void	calculateStack(const char& element);
+		void	initExpression(void);
 
 	public:
 		RPN(void);
 		RPN(const RPN& copy);
-		RPN(std::string _operand);
+		RPN(std::string _expression);
 
 		RPN&	operator=(const RPN& copy);
 
