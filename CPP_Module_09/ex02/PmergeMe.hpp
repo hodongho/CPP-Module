@@ -3,9 +3,10 @@
 
 # include <iostream>
 # include <vector>
-# include <list>
-# include <cmath>
+# include <deque>
+# include <time.h>
 
+# define ORI "\e[0;m"
 # define WHI "\e[1;37m"
 # define RED "\e[0;31m"
 # define GRN "\e[0;32m"
@@ -17,27 +18,37 @@
 class PmergeMe {
 	private:
 		std::vector<unsigned int>	vec;
-		std::list<unsigned int>		list;
-		size_t						insert_sort_size = 2;
+		std::deque<unsigned int>	deque;
+		size_t						insert_sort_size;
 
-		void	initVec(int	argc, char *argv[]);
+		void	initContainer(int argc, char *argv[]);
 		bool	validateValue(int value, std::string origin);
+		void	setInsertSortSize(void);
 
-		void	mergeInsertSort();
-		void	setInsertSortSize();
+		template <typename T>
+		void	mergeInsertSort(T& container, size_t start, size_t end);
+		template <typename T>
+		void	insertSort(T& container, size_t start, size_t end);
+		template <typename T>
+		void	merge(T& container, size_t start, size_t mid, size_t end);
 
+		void	printAlgorithmExecTime(const double& vec_time, const double& deque_time);
+		template<typename T>
+		void	printContainer(const T& container);
+
+		void	isSorted(void);
 
 	public:
-		PmergeMe();
+		PmergeMe(void);
 		PmergeMe(const PmergeMe& copy);
 
 		PmergeMe&	operator=(const PmergeMe& copy);
 
-		~PmergeMe();
+		~PmergeMe(void);
 
-		void	sort(int argc, char *argv[]);
+		void	run(int argc, char *argv[]);
 };
 
-void	printError();
+void	printError(void);
 
 #endif

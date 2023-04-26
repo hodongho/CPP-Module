@@ -5,8 +5,9 @@ int main(int argc, char *argv[])
 	if (argc == 1)
 		printError();
 
-	PmergeMe	sort;
+	PmergeMe	PmergeMe;
 
-	sort.sort(argc, argv);
+	PmergeMe.run(argc, argv);
+
 	return (0);
 }
