@@ -47,34 +47,35 @@ void	PmergeMe::run(int argc, char *argv[])
 	// vector
 	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
 		printError();
+
 	start = (double)tv.tv_sec * (double)1000000000 + (double)tv.tv_nsec;
 
 	this->mergeInsertSort(this->vec, 0, this->vec.size() - 1);
 
 	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
 		printError();
+
 	end = (double)tv.tv_sec * (double)1000000000 + (double)tv.tv_nsec;;
 
 	vec_time = (end - start) / 1000;
 
-	std::cout << RED << "deque------" << std::endl;
-
 	//deque
 	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
 		printError();
+
 	start = (double)tv.tv_sec * (double)1000000000 + (double)tv.tv_nsec;;
 
 	this->mergeInsertSort(this->deque, 0, this->deque.size() - 1);
 
 	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
 		printError();
+
 	end = (double)tv.tv_sec * (double)1000000000 + (double)tv.tv_nsec;;
 
 	deque_time = (end - start) / 1000;
 
 	std::cout << GRN << "After:  ";
 	this->printContainer(this->vec);
-	this->printContainer(this->deque);
 
 	this->printAlgorithmExecTime(vec_time, deque_time);
 	this->isSorted();
@@ -105,6 +106,9 @@ bool	PmergeMe::validateValue(int value, std::string origin)
 			return (false);
 	}
 
+	if (origin.size() >= 10 && origin > "2147483647")
+		return (false);
+
 	return (true);
 }
 
@@ -112,10 +116,10 @@ void	PmergeMe::setInsertSortSize(void)
 {
 	size_t new_size = sqrt(this->vec.size());
 
-	if (new_size > 3)
+	if (new_size > 10)
 		this->insert_sort_size = new_size;
 	else
-		this->insert_sort_size = 3;
+		this->insert_sort_size = 10;
 }
 
 template <typename T>
@@ -137,32 +141,27 @@ void	PmergeMe::mergeInsertSort(T& container, size_t start, size_t end)
 template <typename T>
 void	PmergeMe::insertSort(T& container, size_t start, size_t end)
 {
-	typename T::iterator	iter = container.begin() + start + 1;
-	typename T::iterator	end_iter = container.begin() + end + 1;
-	typename T::iterator	loop_iter;
+	size_t	index = start + 1;
+	size_t	loop_index;
 
-	for (; iter != end_iter; iter++)
+	for (; index != end + 1; index++)
 	{
-		loop_iter = container.begin() + start;
+		loop_index = start;
 
-		for (; loop_iter != iter; loop_iter++)
+		for (; loop_index != index; loop_index++)
 		{
-			if (*loop_iter > *iter)
+			if (container[loop_index] > container[index])
 			{
-				unsigned int	value = *iter;
+				unsigned int			value = container[index];
+				typename T::iterator	index_iter = container.begin();
 
-				printContainer(container);
-				std::cout << BRW << *loop_iter << " " << *iter << " " << value << std::endl;
+				std::advance(index_iter, index);
+				container.erase(index_iter);
 
-				iter = container.erase(iter);
+				typename T::iterator	loop_iter = container.begin();
 
-				printContainer(container);
-				std::cout << BRW << *loop_iter << " " << *iter << " " << value << std::endl;
-
+				std::advance(loop_iter, loop_index);
 				container.insert(loop_iter, value);
-
-				printContainer(container);
-				std::cout << BRW << *loop_iter << " " << *iter << " " << value << std::endl;
 
 				break ;
 			}
@@ -216,7 +215,7 @@ void	PmergeMe::merge(T& container, size_t start, size_t mid, size_t end)
 
 void	PmergeMe::printAlgorithmExecTime(const double& vec_time, const double& deque_time)
 {
-	std::cout 	<< PUP;
+	std::cout 	<< BRW;
 	std::cout	<< "Time to process a range of " << this->vec.size()
 				<< " elements with std::vector : " << vec_time << " us" << std::endl;
 
@@ -236,9 +235,9 @@ void	PmergeMe::isSorted(void)
 			printError();
 	}
 
-	// std::deque<unsigned int> tmp_deque(this->vec.begin(), this->vec.end());
-	// if (this->deque != tmp_deque)
-	// 	printError();
+	std::deque<unsigned int> tmp_deque(this->vec.begin(), this->vec.end());
+	if (this->deque != tmp_deque)
+		printError();
 }
 
 void	printError(void)

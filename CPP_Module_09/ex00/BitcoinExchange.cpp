@@ -59,7 +59,7 @@ void	BitcoinExchange::run(const char* input_file_name)
 		if (input_DB.eof())
 			break ;
 
-		if (this->validateInput(buf, date, value) == false)
+		if (buf == "" || this->validateInput(buf, date, value) == false)
 			continue ;
 
 		exchangeData(date, value);
@@ -147,7 +147,6 @@ bool	BitcoinExchange::validateValue(const std::string& value)
 			dotCount++;
 			continue ;
 		}
-
 		if (!isdigit(value[index]))
 			return (printErrorMessage("bad value => " + value));
 	}
