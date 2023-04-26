@@ -26,6 +26,7 @@ private:
 
 	void	exchangeData(std::string& date, std::string& value);
 
+
 public:
 	BitcoinExchange(void);
 	BitcoinExchange(const BitcoinExchange& copy);

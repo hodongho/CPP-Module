@@ -51,7 +51,16 @@ void	BitcoinExchange::run(const char* input_file_name)
 	if (!input_DB.is_open())
 		printError("could not open file.");
 
-	std::getline(input_DB, buf);
+	while(true)
+	{
+		std::getline(input_DB, buf);
+		if (buf == "date | value")
+			break ;
+
+		if (input_DB.eof())
+			printError("file was wrong.");
+	}
+
 	while (true)
 	{
 		std::getline(input_DB, buf);

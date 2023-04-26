@@ -29,11 +29,9 @@ class RPN {
 		void	setExpression(std::string _expression);
 
 		void	print(void);
-		char	getElement(void);
 		Element	checkElement(const char& element);
 		void	pushNumber(const char element);
 		void	calculateStack(const char& element);
-		void	initExpression(void);
 
 	public:
 		RPN(void);

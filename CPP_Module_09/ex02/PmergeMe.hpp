@@ -4,6 +4,7 @@
 # include <iostream>
 # include <vector>
 # include <deque>
+# include <list>
 # include <time.h>
 
 # define ORI "\e[0;m"
