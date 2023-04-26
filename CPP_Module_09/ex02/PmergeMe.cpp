@@ -36,7 +36,7 @@ PmergeMe::~PmergeMe(void)
 void	PmergeMe::run(int argc, char *argv[])
 {
 	struct timespec	tv;
-	double			start, end, vec_time, deque_time;
+	double			start, end, vec_time, deque_time, list_time;
 
 	this->initContainer(argc, argv);
 	this->setInsertSortSize();
@@ -59,7 +59,7 @@ void	PmergeMe::run(int argc, char *argv[])
 
 	vec_time = (end - start) / 1000;
 
-	//deque
+	// deque
 	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
 		printError();
 
@@ -74,10 +74,25 @@ void	PmergeMe::run(int argc, char *argv[])
 
 	deque_time = (end - start) / 1000;
 
+	//list
+	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
+		printError();
+
+	start = (double)tv.tv_sec * (double)1000000000 + (double)tv.tv_nsec;;
+
+	this->mergeInsertSort(this->list, 0, this->list.size() - 1);
+
+	if (clock_gettime(CLOCK_REALTIME, &tv) == -1)
+		printError();
+
+	end = (double)tv.tv_sec * (double)1000000000 + (double)tv.tv_nsec;;
+
+	list_time = (end - start) / 1000;
+
 	std::cout << GRN << "After:  ";
 	this->printContainer(this->vec);
 
-	this->printAlgorithmExecTime(vec_time, deque_time);
+	this->printAlgorithmExecTime(vec_time, deque_time, list_time);
 	this->isSorted();
 }
 
@@ -92,6 +107,7 @@ void	PmergeMe::initContainer(int argc, char *argv[])
 			printError();
 		this->vec.push_back(value);
 		this->deque.push_back(value);
+		this->list.push_back(value);
 	}
 }
 
@@ -150,9 +166,14 @@ void	PmergeMe::insertSort(T& container, size_t start, size_t end)
 
 		for (; loop_index != index; loop_index++)
 		{
-			if (container[loop_index] > container[index])
+			typename T::iterator	index_iter1 = container.begin();
+			typename T::iterator	loop_iter2 = container.begin();
+
+			std::advance(index_iter1, index);
+			std::advance(loop_iter2, loop_index);
+			if (*loop_iter2 > *index_iter1)
 			{
-				unsigned int			value = container[index];
+				unsigned int			value = *index_iter1;
 				typename T::iterator	index_iter = container.begin();
 
 				std::advance(index_iter, index);
@@ -173,10 +194,15 @@ template <typename T>
 void	PmergeMe::merge(T& container, size_t start, size_t mid, size_t end)
 {
 	T						tmp_container;
-	typename T::iterator	left_iter = container.begin() + start;
-	typename T::iterator	left_end_iter = container.begin() + mid + 1;
-	typename T::iterator	right_iter = container.begin() + mid + 1;
-	typename T::iterator	right_end_iter = container.begin() + end + 1;
+	typename T::iterator	left_iter = container.begin();
+	typename T::iterator	left_end_iter = container.begin();
+	typename T::iterator	right_iter = container.begin();
+	typename T::iterator	right_end_iter = container.begin();
+
+	std::advance(left_iter, start);
+	std::advance(left_end_iter, mid + 1);
+	std::advance(right_iter, mid + 1);
+	std::advance(right_end_iter,  end + 1);
 
 	while (left_iter != left_end_iter && right_iter != right_end_iter)
 	{
@@ -204,23 +230,32 @@ void	PmergeMe::merge(T& container, size_t start, size_t mid, size_t end)
 		right_iter++;
 	}
 
-	size_t index = 0;
+	typename T::iterator	index_iter = tmp_container.begin();
+	typename T::iterator	start_iter = container.begin();
+	typename T::iterator	end_iter = container.begin();
 
-	for (; start != end + 1; start++)
+	std::advance(start_iter, start);
+	std::advance(end_iter, end + 1);
+	for (; start_iter != end_iter; start_iter++)
 	{
-		container[start] = tmp_container[index];
-		index++;
+		*start_iter = *index_iter;
+		index_iter++;
 	}
 }
 
-void	PmergeMe::printAlgorithmExecTime(const double& vec_time, const double& deque_time)
+void	PmergeMe::printAlgorithmExecTime(const double& vec_time, const double& deque_time, const double& list_time)
 {
 	std::cout 	<< BRW;
+
 	std::cout	<< "Time to process a range of " << this->vec.size()
 				<< " elements with std::vector : " << vec_time << " us" << std::endl;
 
 	std::cout	<< "Time to process a range of " << this->deque.size()
 				<< " elements with std::deque  : " << deque_time << " us" << std::endl;
+
+	std::cout	<< "Time to process a range of " << this->list.size()
+				<< " elements with std::deque  : " << list_time << " us" << std::endl;
+
 	std::cout 	<< ORI;
 }
 

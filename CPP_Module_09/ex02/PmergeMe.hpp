@@ -20,6 +20,7 @@ class PmergeMe {
 	private:
 		std::vector<unsigned int>	vec;
 		std::deque<unsigned int>	deque;
+		std::list<unsigned int>		list;
 		size_t						insert_sort_size;
 
 		void	initContainer(int argc, char *argv[]);
@@ -33,7 +34,7 @@ class PmergeMe {
 		template <typename T>
 		void	merge(T& container, size_t start, size_t mid, size_t end);
 
-		void	printAlgorithmExecTime(const double& vec_time, const double& deque_time);
+		void	printAlgorithmExecTime(const double& vec_time, const double& deque_time, const double& list_time);
 		template<typename T>
 		void	printContainer(const T& container);
 
