@@ -165,18 +165,30 @@ bool	BitcoinExchange::validateValue(const std::string& value)
 void	BitcoinExchange::exchangeData(std::string& date, std::string& value)
 {
 	std::map<std::string, float>::iterator	iter;
+	float									price = 0;
 
 	iter = this->basic_DB_map.lower_bound(date);
+
+	if (iter == this->basic_DB_map.begin())
+	{
+		printErrorMessage("bad date => " + date);
+		return ;
+	}
+
 	if (date == iter->first)
 	{
-		std::cout <<	BLU << date + " => " + value + " = " <<
-						iter->second * atof(value.c_str()) << std::endl;
+		price = iter->second * atof(value.c_str());
 	}
 	else
 	{
-		std::cout <<	BLU << date + " => " + value + " = " <<
-						(--iter)->second * atof(value.c_str()) << std::endl;
+		price =	(--iter)->second * atof(value.c_str());
 	}
+
+	price = round(price * 100) / 100;
+	std::cout << std::fixed;
+	std::cout.precision(2);
+	std::cout <<	BLU << date + " => " + value + " = " <<
+					price << std::endl;
 }
 
 void	printError(std::string msg)

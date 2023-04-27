@@ -78,7 +78,8 @@
 		"__hash_table": "cpp",
 		"__verbose_abort": "cpp",
 		"array": "cpp",
-		"unordered_map": "cpp"
+		"unordered_map": "cpp",
+		"complex": "cpp"
 	},
 	"cSpell.words": [
 		"WRONGANIMAL"

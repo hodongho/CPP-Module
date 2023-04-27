@@ -5,6 +5,8 @@
 # include <string>
 # include <fstream>
 # include <map>
+# include <iomanip>
+# include <cmath>
 
 # define RED "\e[0;31m"
 # define GRN "\e[0;32m"
@@ -25,7 +27,6 @@ private:
 	bool	validateValue(const std::string& value);
 
 	void	exchangeData(std::string& date, std::string& value);
-
 
 public:
 	BitcoinExchange(void);
