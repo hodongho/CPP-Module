@@ -19,7 +19,7 @@ BitcoinExchange::BitcoinExchange(void)
 		if (basic_DB.eof())
 			break ;
 
-		this->basic_DB_map[date] = atof(value.c_str());
+		this->basic_DB_map[date] = static_cast<float>(atof(value.c_str()));
 	}
 }
 
@@ -138,24 +138,25 @@ bool	BitcoinExchange::validateDate(const std::string& date)
 
 bool	BitcoinExchange::validateValue(const std::string& value)
 {
-	size_t	dotCount = 0;
+	size_t	dot_count = 0;
 
-	double	tmp_value = atof(value.c_str());
+	double	tmp_value = static_cast<float>(atof(value.c_str()));
 
-	if (tmp_value <= 0)
+	if (tmp_value <= 0.0)
 		return (printErrorMessage("not a positive number."));
-	else if (tmp_value >= 1000)
+	else if (tmp_value >= 1000.0)
 		return (printErrorMessage("too large a number."));
 
 	for (size_t index = 0; index < value.size(); index++)
 	{
 		if (value[index] == '.')
 		{
-			if (dotCount != 0)
+			if (index == 0 || dot_count != 0 || value.size() > 8)
 				return (printErrorMessage("bad value => " + value));
-			dotCount++;
+			dot_count++;
 			continue ;
 		}
+
 		if (!isdigit(value[index]))
 			return (printErrorMessage("bad value => " + value));
 	}
@@ -177,18 +178,32 @@ void	BitcoinExchange::exchangeData(std::string& date, std::string& value)
 
 	if (date == iter->first)
 	{
-		price = iter->second * atof(value.c_str());
+		price = iter->second * static_cast<float>(atof(value.c_str()));
 	}
 	else
 	{
-		price =	(--iter)->second * atof(value.c_str());
+		price =	(--iter)->second * static_cast<float>(atof(value.c_str()));
 	}
 
 	price = round(price * 100) / 100;
+
+	float	decimal_part = price - static_cast<int>(price);
+	int		decimal_cnt = 0;
+
+	while (decimal_part > 0 && decimal_cnt < 2)
+	{
+		decimal_part *= 10;
+		decimal_part -= static_cast<int>(decimal_part);
+		decimal_cnt++;
+	}
+
 	std::cout << std::fixed;
-	std::cout.precision(2);
+	std::cout.precision(decimal_cnt);
+
 	std::cout <<	BLU << date + " => " + value + " = " <<
 					price << std::endl;
+
+	std::cout.unsetf(std::ios::fixed);
 }
 
 void	printError(std::string msg)
