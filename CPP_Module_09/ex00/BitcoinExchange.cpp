@@ -140,7 +140,7 @@ bool	BitcoinExchange::validateValue(const std::string& value)
 {
 	size_t	dot_count = 0;
 
-	double	tmp_value = static_cast<float>(atof(value.c_str()));
+	float	tmp_value = static_cast<float>(atof(value.c_str()));
 
 	if (tmp_value <= 0.0)
 		return (printErrorMessage("not a positive number."));
