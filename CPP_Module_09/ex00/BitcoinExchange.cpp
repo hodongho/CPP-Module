@@ -151,7 +151,7 @@ bool	BitcoinExchange::validateValue(const std::string& value)
 	{
 		if (value[index] == '.')
 		{
-			if (index == 0 || dot_count != 0 || value.size() > 8)
+			if (index == 0 || dot_count != 0 || value.size() - index > 7)
 				return (printErrorMessage("bad value => " + value));
 			dot_count++;
 			continue ;
